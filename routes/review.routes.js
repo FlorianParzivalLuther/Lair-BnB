@@ -1,31 +1,39 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const { User, Property, Booking, Review } = require('../models');
+const Review = require("../models/Review.model");
 
+// router.get("/review", async (req, res) => {
+//   // Get all reviews
+//   try {
+//     const reviews = await Review.find();
+//     res.json(reviews);
+//   } catch (error) {
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
 
-
-router.get('/reviews', async (req, res) => {
-    // Get all reviews
-    try {
-      const reviews = await Review.find();
-      res.json(reviews);
-    } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
+router.get("/review/:reviewId", async (req, res) => {
+  // Get a specific review by ID
+  try {
+    const review = await Review.findById(req.params.reviewId);
+    if (!review) {
+      return res.status(404).json({ error: "Review not found" });
     }
-  });
-  
-  router.get('/reviews/:reviewId', async (req, res) => {
-    // Get a specific review by ID
-    try {
-      const review = await Review.findById(req.params.reviewId);
-      if (!review) {
-        return res.status(404).json({ error: 'Review not found' });
-      }
-      res.json(review);
-    } catch (error) {
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  });
+    res.json(review);
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
-  module.exports = router;
+// Rendering example
+router.get("/review", async (req, res) => {
+  try {
+    const reviews = await Review.find();
+    res.render("review", { reviews });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+module.exports = router;
