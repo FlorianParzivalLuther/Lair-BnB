@@ -15,6 +15,23 @@ const hbs = require("hbs");
 
 const app = express();
 
+// Will want to add this for added security
+// const morgan = require("morgan");
+// const helmet = require("helmet");
+
+// app.use(morgan("common"));
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+//         "img-src": ["'data'", "http://localhost:3000"],
+//       },
+//     },
+//   })
+// );
+
+
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 require("./config/session.config")(app);

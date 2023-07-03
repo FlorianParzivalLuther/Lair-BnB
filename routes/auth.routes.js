@@ -4,6 +4,10 @@ const { register } = require("../controllers/auth.js");
 const express = require("express");
 const { login } = require("../controllers/auth.js");
 const { verifyToken } = require("../middleware/auth.middleware.js");
+const {
+  isLoggedIn,
+  isLoggedOut,
+} = require("../middleware/route-guard.middleware.js");
 
 // Rendering Signup Page for users
 router.get("/signup", (req, res) => {
@@ -14,7 +18,7 @@ router.get("/signup", (req, res) => {
 router.post("/signup", register);
 
 // Render Login Page for users
-router.get("/login", (req, res) => {
+router.get("/login", isLoggedOut, (req, res) => {
   res.render("login");
 });
 
@@ -30,7 +34,7 @@ router.post("/logout", (req, res, next) => {
 });
 
 // User Profile Page
-router.get("/user", (req, res) => {
+router.get("/user", isLoggedIn, (req, res) => {
   res.render("user", { userInSession: req.session.currentUser });
 });
 
