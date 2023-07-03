@@ -4,6 +4,8 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 const Property = require("../models/Property.model");
+const { createProperty } = require("../controllers/property");
+const { updateProperty } = require("../controllers/property");
 
 //  router.get("/property", async (req, res) => {
 //    // Get all properties
@@ -27,6 +29,19 @@ const Property = require("../models/Property.model");
 //     res.status(500).json({ error: "Internal server error" });
 //   }
 // });
+
+// Render Property CREATE PAGE
+
+router.get("/property/create", (req, res) => {
+  res.render("create-property");
+});
+
+// Post Property / Create Property
+
+router.post("/property/create", createProperty);
+
+// Update Property
+// router.put()
 
 // Get a specific property by ID
 router.get("/property/:propertyId", (req, res) => {
