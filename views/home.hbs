@@ -1,6 +1,6 @@
 {{! home.hbs }}
 
-{{#each properties}}
+{{!-- {{#each properties}}
   <div class="col-md-4">
     <div class="card">
       <img src="{{this.images.[0]}}" class="card-img-top" alt="Property Image" />
@@ -10,4 +10,22 @@
       </div>
     </div>
   </div>
-{{/each}}
+{{/each}} --}}
+
+
+
+<div class="container">
+  <div class="row">
+    {{#each properties}}
+    <div class="col-md-4">
+      <div class="card">
+        <img src="{{this.images.[0]}}" class="card-img-top rounded" alt="Property Image" />
+        <div class="card-body">
+          <h5 class="card-title text-truncate" style="max-height: 3.6em; overflow: hidden;">{{this.title}}</h5>
+          <p class="card-text text-truncate" style="max-height: 5.2em; overflow: hidden;">{{this.description}}</p>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
