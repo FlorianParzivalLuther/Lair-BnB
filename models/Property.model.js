@@ -7,7 +7,7 @@ const PropertySchema = new mongoose.Schema({
   price: { type: Number, required: true },
   amenities: [String],
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  images: [String],
+  images: [String], //6 pics
 });
 
 const Property = mongoose.model("Property", PropertySchema);
