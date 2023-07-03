@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const Booking = require("../models/Booking.model");
 
 // router.get("/booking", async (req, res) => {
@@ -22,6 +21,7 @@ router.get("/booking/:bookingId", async (req, res) => {
     }
     res.json(booking);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -32,6 +32,7 @@ router.get("/booking", async (req, res) => {
     const bookings = await Booking.find();
     res.render("booking", { bookings });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
