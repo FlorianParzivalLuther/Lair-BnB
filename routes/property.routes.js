@@ -66,7 +66,7 @@ const createTestProperties = () => {
         new Property({
           title: `Rohan Retreat: "Edoras Haven"`,
           description: `Immerse yourself in the grandeur of the Rohirrim at "Edoras Haven." This majestic dwelling nestled amidst the rolling plains of Rohan offers a truly enchanting experience. The warm wooden interiors reflect the courageous spirit of the Rohirrim, while panoramic views of the vast landscape captivate your senses. Prepare for an adventure of a lifetime as you traverse the trails and feel the breeze of the grasslands. Giddy-up, for Rohan awaits!`,
-          location: `Rohan, "Edoras Haven" promises tranquility amidst nature's embrace.`,
+          location: `Rohan, MiddleEarth South, 12345 ME`,
           price: 150,
           amenities: [
             "Spacious common room with fireplace",
@@ -88,7 +88,7 @@ const createTestProperties = () => {
         new Property({
           title: `Moria Marvel: "Gloamheart Abode"`,
           description: `Delve into the depths of the earth and uncover the hidden wonders of "Gloamheart Abode" in the legendary city of Moria. This subterranean sanctuary boasts intricate stone craftsmanship, reminiscent of the Dwarven heritage. Explore the labyrinthine tunnels and uncover the mysteries of Moria at your own pace. Get ready to be amazed by the ethereal glow of the phosphorescent fungi, casting an otherworldly light. Courage, dear traveler, for Moria beckons!`,
-          location: `Situated deep within the fabled mines of Moria, "Gloamheart Abode" offers an unforgettable subterranean experience`,
+          location: `Mines of Moria, MiddleEarth North, 12345 ME`,
           price: 120,
           amenities: [
             "Dwarf-made stone bathtub",
@@ -109,7 +109,7 @@ const createTestProperties = () => {
         new Property({
           title: `Rivendell Refuge: "Starlight Haven"`,
           description: `Find solace in the serene sanctuary of "Starlight Haven," nestled amidst the breathtaking beauty of Rivendell. This elven abode offers respite from the tumultuous outside world. Elegant arches and ethereal waterfalls will transport you to a realm of tranquility. Delight in the elven craftsmanship, adorned with intricate carvings and delicate tapestries. Allow the melodies of nature to soothe your soul as you discover the wisdom of the elves. Welcome, weary traveler, to Rivendell's embrace.`,
-          location: `Perched gracefully in the heart of Rivendell, "Starlight Haven" provides a haven of peace and serenity.`,
+          location: `Center-Rivendell, MiddleEarth South, 12345 ME`,
           price: 180,
           amenities: [
             "Serene meditation gardens",
@@ -130,7 +130,7 @@ const createTestProperties = () => {
         new Property({
           title: `The Shire Hideaway: "Hobbiton Meadows"`,
           description: `Embark on a delightful journey to the enchanting "Hobbiton Meadows," a cozy haven nestled in the heart of the Shire. Immerse yourself in the idyllic lifestyle of the hobbits, surrounded by lush greenery and quaint hobbit holes. Savor hearty meals and indulgent second breakfasts while basking in the simple pleasures of life. Wander through the vibrant gardens and experience the warmth and hospitality of the hobbit community. Welcome, dear hobbit-at-heart, to the land of the Shire!`,
-          location: `Tucked away in the picturesque landscape of the Shire, "Hobbiton Meadows" promises a whimsical retreat.`,
+          location: `GollumCreek Village, MiddleEarth West, 12345 ME`,
           price: 90,
           amenities: [
             "Cozy fireplace for evenings of storytelling",
@@ -151,7 +151,7 @@ const createTestProperties = () => {
         new Property({
           title: `Minas Morgul Enigma: "Shadow's Embrace"`,
           description: `Brace yourself for an eerie yet captivating experience at "Shadow's Embrace," situated within the haunted city of Minas Morgul. This ethereal dwelling offers a unique blend of darkness and mystique. Intricate Gothic architecture and flickering torches set the stage for an extraordinary journey. Embrace the whispers of the past as you explore the chilling beauty that lingers within these forsaken walls. Venture forth, intrepid traveler, for Minas Morgul reveals its secrets to those brave enough to seek them.`,
-          location: `Tucked within the haunting city of Minas Morgul, "Shadow's Embrace" invites you to unravel its dark enchantment.`,
+          location: `Minas Morgul-City, MiddleEarth North, 12345 ME`,
           price: 200,
           amenities: [
             "Moonlit rooftop terrace",
@@ -172,7 +172,7 @@ const createTestProperties = () => {
         new Property({
           title: `Erebor Abundance: "Dragon's Hoard"`,
           description: `Prepare to be awe-struck by the grandeur of "Dragon's Hoard," a regal abode nestled deep within the heart of Erebor, the Lonely Mountain. Marvel at the Dwarven craftsmanship that adorns every corner, showcasing the wealth of the mountain kingdom. Enter a world of opulence and embrace the echoes of a bygone era. Immerse yourself in the tales of the dwarves and their fabled treasure. Claim your own share of grandeur within the halls of Erebor, noble traveler!`,
-          location: `Set within the majestic Lonely Mountain, "Dragon's Hoard" presents a realm of riches and splendor`,
+          location: `Lonely Mountain, MiddleEarth Center, 12345 ME`,
           price: 250,
           amenities: [
             "Ornate banquet hall for feasts fit for a king",
