@@ -15,17 +15,32 @@ const Property = require("../models/Property.model");
 //    }
 //  });
 
-router.get("/property/:propertyId", async (req, res) => {
-  // Get a specific property by ID
-  try {
-    const property = await Property.findById(req.params.propertyId);
-    if (!property) {
-      return res.status(404).json({ error: "Property not found" });
-    }
-    res.json(property);
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
-  }
+// router.get("/property/:propertyId", async (req, res) => {
+//   // Get a specific property by ID
+//   try {
+//     const property = await Property.findById(req.params.propertyId);
+//     if (!property) {
+//       return res.status(404).json({ error: "Property not found" });
+//     }
+//     res.json(property);
+//   } catch (error) {
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
+
+// Get a specific property by ID
+router.get("/property/:propertyId", (req, res) => {
+  Property.findById(req.params.propertyId)
+    .then((property) => {
+      if (property) {
+        res.render("property", { property });
+      } else {
+        return res.status(404).json({ error: "Property not found" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ error: "Internal server error" });
+    });
 });
 
 // Rendering example
@@ -37,6 +52,7 @@ router.get("/property", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 //! cant understand why there is a json shown when disabled
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
