@@ -36,4 +36,24 @@ router.get("/review", async (req, res) => {
   }
 });
 
+
+
+// POST route for submitting a review
+router.post("/review", async (req, res) => {
+  try {
+    // Create a new review based on the request body
+    const newReview = new Review(req.body);
+    // Save the review to the database
+    const savedReview = await newReview.save();
+    // Redirect the user to the home page or perform any other desired action
+    res.redirect("/");
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+
+
+
 module.exports = router;
