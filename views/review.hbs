@@ -1,11 +1,11 @@
 {{! property-details.hbs }}
-
+<form action="/property/{{property._id}}/review" method="POST">
 {{!Container 1}}
 <div class="row">
   <div class="container mb-4 mt-4">
     <div class="card">
       <div class="card-body bg-light">
-        <div>Share a comment and rating for this property:{{property/:id}}</div>
+        <div>Share a comment and rating for this property: {{property.title}} </div>
       </div>
     </div>
   </div>
@@ -25,6 +25,7 @@
           <div class="card">
             <div class="card-body bg-light">
               Display Username
+              
               {{! THIS.USERNAME LOGGEDIN}}
 
             </div>
@@ -186,4 +187,6 @@
 </div>
 {{!Container 3}}
 
-<input class="btn btn-primary" type="submit" value="Submit">
+
+<button type="submit" value="submit">Submit</button>
+</form>

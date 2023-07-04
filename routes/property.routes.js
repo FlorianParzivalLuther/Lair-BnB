@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-
+const Review = require("../models/Review.model");
 const Property = require("../models/Property.model");
 
 //  router.get("/property", async (req, res) => {
@@ -205,5 +205,93 @@ const createTestProperties = () => {
 
 createTestProperties();
 //!
+
+
+
+
+
+
+
+
+
+
+// router.get("property/:propertyId/review",(req,res)=>{
+// Property.findById(req.params.propertyId).then((property) => {
+//   if (property) {
+//     res.render("review", { property });
+//   } else {
+//     return res.status(404).json({ error: "Property not found" });
+//   }
+// }).catch((error))=>{
+//   res.status(500).json({error:"Internal server error"});
+// }
+// }
+// )
+
+
+
+
+router.get("/property/:propertyId/review", async (req, res) => {
+  Property.findById(req.params.propertyId)
+    .then((property) => {
+      if (property) {
+        console.log(property);
+        res.render("review", { property });
+      } else {
+        return res.status(404).json({ error: "Property not found" });
+      }
+    })})
+
+
+
+
+
+// POST route for submitting a review
+router.post("property/:propertyId/review", async (req, res) => {
+  try {
+    const { comment, rating } = req.body;
+
+    // Validate the rating value
+    if (rating < 1 || rating > 10) {
+      return res.status(400).json({ error: "No rating selected - Error" });
+    }
+
+    // Find the property by ID
+    const property = await Property.findById(propertyId);
+    if (!property) {
+      return res.status(404).json({ error: "Property not found" });
+    }
+
+
+
+    // Create a new review based on the request body
+    const newReview = new Review({
+      comment,
+      property: property._id,
+      guest: user._id,
+      rating,
+    });
+
+    // Save the review to the database
+    const savedReview = await newReview.save();
+    console.log("Safed Review");
+
+    // Redirect the user to the home page or perform any other desired action
+    res.redirect("/");
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
