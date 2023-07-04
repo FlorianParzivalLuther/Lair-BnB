@@ -36,8 +36,6 @@ router.get("/review", async (req, res) => {
   }
 });
 
-
-
 // POST route for submitting a review
 router.post("/review", async (req, res) => {
   try {
@@ -51,9 +49,5 @@ router.post("/review", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
-
-
-
 
 module.exports = router;
