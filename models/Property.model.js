@@ -8,6 +8,15 @@ const PropertySchema = new mongoose.Schema({
   amenities: [String],
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   images: [String], //6 pics
+  maxGuests: {
+    type: Number,
+    required: true,
+  },
+  rating: {
+    type: Number,
+    min: 1,
+    max: 5,
+  },
 });
 
 const Property = mongoose.model("Property", PropertySchema);

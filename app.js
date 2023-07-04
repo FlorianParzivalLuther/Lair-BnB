@@ -31,6 +31,15 @@ const app = express();
 //   })
 // );
 
+
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: "dnit8gqhj",
+  api_key: "285367553745546",
+  api_secret: "ehIqrvtwvlG-CdVUAdgId5xTMgU",
+});
+
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 require("./config/session.config")(app);
