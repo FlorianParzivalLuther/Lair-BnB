@@ -24,12 +24,11 @@ const Property = require("../models/Property.model");
 //     });
 // });
 
-
 router.get("/", (req, res, next) => {
   console.log("found home");
   Property.find()
     .then((allThePropertiesFromDB) => {
-      console.log("Retrieved properties from DB:", allThePropertiesFromDB);
+      //console.log("Retrieved properties from DB:", allThePropertiesFromDB);
       res.render("home", { properties: allThePropertiesFromDB }); // Render the "home" view file
     })
     .catch((error) => {
@@ -37,6 +36,5 @@ router.get("/", (req, res, next) => {
       next(error);
     });
 });
-
 
 module.exports = router;

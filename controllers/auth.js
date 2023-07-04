@@ -92,7 +92,7 @@ const registerHost = async (req, res, next) => {
 
 const loginUser = async (req, res, next) => {
   try {
-    console.log("SESSION =====>", req.session);
+    // console.log("SESSION =====>", req.session);
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
 
