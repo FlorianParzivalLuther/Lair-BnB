@@ -1,0 +1,25 @@
+<div>
+  <h2>Title: {{property.title}}</h2>
+  <p>Description: {{property.description}}</p>
+
+  <h3>Images:</h3>
+  <ul>
+    {{#each property.images}}
+      <li><img src="{{this.images}}" /></li>
+    {{/each}}
+  </ul>
+
+  <h3>Amenities:</h3>
+  <ul>
+    {{#each property.amenities}}
+      <li>{{this}}</li>
+    {{/each}}
+  </ul>
+
+  <a href="/property/{{property._id}}/edit">Edit Property</a>
+
+  <form action="/property/{{property._id}}" method="POST">
+    <input type="hidden" name="_method" value="DELETE" />
+    <button type="submit">Delete Property</button>
+  </form>
+</div>

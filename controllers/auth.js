@@ -48,10 +48,10 @@ const register = async (req, res) => {
 // Logging in
 const login = async (req, res) => {
   try {
-    console.log("SESSION =====>", req.session);
+    // console.log("SESSION =====>", req.session);
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
-    
+
     if (!user)
       return res.status(400).render("login", {
         errorMessage: "User not valid. Please signup.",

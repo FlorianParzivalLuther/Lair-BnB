@@ -10,9 +10,35 @@ const createProperty = async (req, res) => {
     price,
     amenities,
     owner,
-    images,
     rating,
+    maxGuests,
   } = req.body;
+
+  const images = [];
+  if (req.files && req.files.images) {
+    const imageFiles = Array.isArray(req.files.images)
+      ? req.files.images
+      : [req.files.images];
+
+    for (const file of imageFiles) {
+      const result = await cloudinary.uploader.upload(file.path);
+      images.push(result.secure_url);
+    }
+  }
+
+  console.log(req.body);
+  if (
+    !title ||
+    !description ||
+    !location ||
+    !price ||
+    !amenities ||
+    !maxGuests
+  ) {
+    return res.status(400).render("properties/create-property", {
+      errorMessage: "All fields are mandatory",
+    });
+  }
 
   try {
     const newProperty = new Property({
@@ -24,22 +50,11 @@ const createProperty = async (req, res) => {
       owner,
       images,
       rating,
+      maxGuests,
     });
 
-    if (
-      !title ||
-      !description ||
-      !location ||
-      !price ||
-      !amenities ||
-      !images
-    ) {
-      return res.status(400).render("create-property", {
-        errorMessage: "All fields are mandatory",
-      });
-    }
-
     const savedProperty = await newProperty.save();
+    //console.log(savedProperty);
     res.status(201).redirect(`/property/${savedProperty._id}`);
   } catch (err) {
     res.status(500).json(err);
@@ -48,12 +63,50 @@ const createProperty = async (req, res) => {
 
 // UPDATE PROPERTY FUNCTION
 const updateProperty = async (req, res) => {
+  console.log("booooooddddddyyyyyyy", req.body);
+  console.log(req.params);
   try {
-    const updatedProperty = await Property.findByIdAndUpdate();
-    res.status(200).json(updatedProperty);
+    // body
+    // if body.images === 0 ? remove the image
+    const updatedProperty = await Property.findByIdAndUpdate(
+      req.params.propertyId,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    // console.log(updatedProperty);
+    res.status(200).redirect(`/property/${updatedProperty._id}`);
   } catch (err) {
     res.status(500).json(err);
   }
 };
 
-module.exports = { createProperty, updateProperty };
+// DELETE PROPERTY
+const deleteProperty = async (req, res) => {
+  try {
+    const propertyId = req.params.propertyId;
+
+    await Property.findByIdAndDelete(propertyId);
+    res.status(200).redirect("/property");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+// FIND PROPERTY
+const findProperty = async (req, res) => {
+  try {
+    const property = await Property.findById(req.params.id);
+    res.status(200).json(property);
+  } catch (err) {
+    es.status(500).json(err);
+  }
+};
+
+module.exports = {
+  createProperty,
+  updateProperty,
+  deleteProperty,
+  findProperty,
+};

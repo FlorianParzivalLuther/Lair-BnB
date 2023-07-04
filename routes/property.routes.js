@@ -2,10 +2,15 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-
 const Property = require("../models/Property.model");
-const { createProperty } = require("../controllers/property");
-const { updateProperty } = require("../controllers/property");
+const {
+  createProperty,
+  deleteProperty,
+  updateProperty,
+} = require("../controllers/property");
+
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 //  router.get("/property", async (req, res) => {
 //    // Get all properties
@@ -33,22 +38,42 @@ const { updateProperty } = require("../controllers/property");
 // Render Property CREATE PAGE
 
 router.get("/property/create", (req, res) => {
-  res.render("create-property");
+  res.render("properties/create-property");
 });
 
 // Post Property / Create Property
 
-router.post("/property/create", createProperty);
+router.post("/property/create", upload.array("images"), createProperty);
+
+// Get Edit page
+router.get("/property/:propertyId/edit", (req, res) => {
+  Property.findById(req.params.propertyId)
+    .then((property) => {
+      if (property) {
+        console.log(property);
+        res.render("properties/edit-property", { property });
+      } else {
+        return res.status(404).json({ error: "Property not found" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ error: "Internal server error" });
+    });
+  //console.log(propertyId);
+});
 
 // Update Property
-// router.put()
+router.post("/property/:propertyId/edit", updateProperty);
+
+// Delete Property
+router.post("/property/:propertyId", deleteProperty);
 
 // Get a specific property by ID
 router.get("/property/:propertyId", (req, res) => {
   Property.findById(req.params.propertyId)
     .then((property) => {
       if (property) {
-        res.render("property", { property });
+        res.render("properties/property", { property });
       } else {
         return res.status(404).json({ error: "Property not found" });
       }
@@ -62,7 +87,7 @@ router.get("/property/:propertyId", (req, res) => {
 router.get("/property", async (req, res) => {
   try {
     const properties = await Property.find();
-    res.render("property", { properties });
+    res.render("properties/property", { properties });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
@@ -98,6 +123,7 @@ const createTestProperties = () => {
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376504/samples/properties/download_kg9cls.jpg",
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376504/samples/properties/download-2_cjaa4d.jpg",
           ],
+          maxGuests: 5,
         }),
 
         new Property({
@@ -119,6 +145,7 @@ const createTestProperties = () => {
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376532/samples/properties/download_bg9zoh.jpg",
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376532/samples/properties/download-2_fvjhcm.jpg",
           ],
+          maxGuests: 5,
         }),
 
         new Property({
@@ -140,6 +167,7 @@ const createTestProperties = () => {
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376522/samples/properties/download-3_qwj0ss.jpg",
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376522/samples/properties/download-2_br4dwi.jpg",
           ],
+          maxGuests: 5,
         }),
 
         new Property({
@@ -161,6 +189,7 @@ const createTestProperties = () => {
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376490/samples/properties/download-1_bmuh9l.jpg",
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376490/samples/properties/download-3_carelc.jpg",
           ],
+          maxGuests: 5,
         }),
 
         new Property({
@@ -182,6 +211,7 @@ const createTestProperties = () => {
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688379372/samples/properties/download-7_jtkzsu.jpg",
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688379372/samples/properties/download_xinm7t.jpg",
           ],
+          maxGuests: 5,
         }),
 
         new Property({
@@ -203,6 +233,7 @@ const createTestProperties = () => {
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376252/samples/properties/download-2_hglvfr.jpg",
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376252/samples/properties/download-8_kcyphr.jpg",
           ],
+          maxGuests: 5,
         }),
       ];
 

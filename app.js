@@ -31,6 +31,13 @@ const app = express();
 //   })
 // );
 
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: "dnit8gqhj",
+  api_key: "285367553745546",
+  api_secret: "ehIqrvtwvlG-CdVUAdgId5xTMgU",
+});
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
@@ -45,7 +52,6 @@ app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 // 👇 Start handling routes here
 const authRoutes = require("./routes/auth.routes");
 app.use("/", authRoutes);
-
 
 const homeRoutes = require("./routes/home.routes");
 app.use("/", homeRoutes);
