@@ -1,0 +1,43 @@
+<h1>Edit Property</h1>
+
+<form action="/property/{{property._id}}/edit" method="POST">
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="title" value="{{property.title}}" /><br />
+
+  <label for="description">Description:</label>
+  <textarea
+    id="description"
+    name="description"
+  >{{property.description}}</textarea><br />
+
+  <label for="location">Location:</label>
+  <input
+    type="text"
+    id="location"
+    name="location"
+    value="{{property.location}}"
+  /><br />
+
+  <label for="price">Price:</label>
+  <input type="number" id="price" name="price" value="{{property.price}}" /><br
+  />
+
+  <label for="amenities">Amenities:</label>
+  <textarea id="amenities" name="amenities">{{property.amenities}}</textarea><br
+  />
+
+  {{! <label for="images">Images:</label>
+  <input type="file" id="images" name="images" accept="image/*" multiple /><br
+  /> }}
+  <small>Leave blank if you don't want to update the images.</small><br />
+
+  <label for="maxGuests">Max Guests:</label>
+  <input
+    type="number"
+    id="maxGuests"
+    name="maxGuests"
+    value="{{property.maxGuests}}"
+  /><br />
+
+  <input type="submit" value="Update Property" />
+</form>
