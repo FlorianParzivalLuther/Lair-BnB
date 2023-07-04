@@ -31,7 +31,6 @@ const app = express();
 //   })
 // );
 
-
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 require("./config/session.config")(app);
@@ -49,16 +48,22 @@ app.use("/", authRoutes);
 const homeRoutes = require("./routes/home.routes");
 app.use("/", homeRoutes);
 const bookingRoutes = require("./routes/booking.routes");
-app.use("/", bookingRoutes);
+app.use("/booking", bookingRoutes);
 const errorRoutes = require("./routes/error.routes");
-app.use("/", errorRoutes);
+app.use("/error", errorRoutes);
 const propertyRoutes = require("./routes/property.routes");
-app.use("/", propertyRoutes);
+app.use("/property", propertyRoutes);
 const reviewRoutes = require("./routes/review.routes");
-app.use("/", reviewRoutes);
+app.use("/review", reviewRoutes);
 const userRoutes = require("./routes/user.routes");
-app.use("/", userRoutes);
+app.use("/user", userRoutes);
+const hostRoutes = require("./routes/host.routes");
+app.use("/host", hostRoutes);
 
+const userLogin = require("./routes/auth.routes");
+app.use("/userLogin", userLogin);
+const hostLogin = require("./routes/auth.routes");
+app.use("/hostLogin", hostLogin);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

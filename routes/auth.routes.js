@@ -1,7 +1,9 @@
 const { Router } = require("express");
 const router = new Router();
-const { register } = require("../controllers/auth.js");
-const express = require("express");
+const { registerUser, registerHost } = require("../controllers/auth.js");
+const User = require("../models/User.model.js");
+const Host = require("../models/Host.model.js");
+const bcrypt = require("bcrypt");
 const { login } = require("../controllers/auth.js");
 const { verifyToken } = require("../middleware/auth.middleware.js");
 const {
@@ -9,21 +11,60 @@ const {
   isLoggedOut,
 } = require("../middleware/route-guard.middleware.js");
 
-// Rendering Signup Page for users
-router.get("/signup", (req, res) => {
-  res.render("register");
+// SIGNING UP AS A USER
+router.get("/userSignup", async (req, res, next) => {
+  if (req.session.currentUser) {
+    const user = await user.findOne(req.session.currentUser);
+    if (user) {
+      res.redirect("/user");
+    } else {
+      req.session.destroy((err) => {
+        if (err) next(err);
+        res.render("userSignup");
+      });
+    }
+  } else {
+    res.render("userSignup");
+  }
 });
 
-// Register is defined in the controlers/auth.js
-router.post("/signup", register);
+router.post("/userSignup", registerUser);
 
-// Render Login Page for users
-router.get("/login", isLoggedOut, (req, res) => {
-  res.render("login");
+// LOGGIN IN AS A USER
+router.get("/loginUser", isLoggedOut, (req, res) => {
+  res.render("loginUser");
 });
 
-// Login
-router.post("/login", login);
+router.post("/loginUser", isLoggedOut, (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (email === "" || password === "") {
+    res.render("routes/auth.routes", {
+      errorMessage: "Please enter both, email and password to login.",
+    });
+    return;
+  }
+
+  User.findOne({ email })
+    .then((user) => {
+      if (!user) {
+        console.log("Email not registered. ");
+        res.render("loginUser", {
+          errorMessage: "User not found and/or incorrect password.",
+        });
+        return;
+      } else if (bcrypt.compareSync(password, user.password)) {
+        req.session.currentUser = user;
+        res.redirect("/user");
+      } else {
+        console.log("Incorrect password. ");
+        res.render("loginUser", {
+          errorMessage: "User not found and/or incorrect password.",
+        });
+      }
+    })
+    .catch((error) => next(error));
+});
 
 // Logout
 router.post("/logout", (req, res, next) => {
@@ -38,22 +79,60 @@ router.get("/user", isLoggedIn, (req, res) => {
   res.render("user", { userInSession: req.session.currentUser });
 });
 
-// BECOMING A HOST //
-
-router.get("/becomeHost", (req, res) => {
-  res.render("register");
+// SIGNING UP AS A HOST
+router.get("/hostSignup", async (req, res, next) => {
+  if (req.session.currentUser) {
+    const host = await host.findOne(req.session.currentUser);
+    if (host) {
+      res.redirect("/host");
+    } else {
+      req.session.destroy((err) => {
+        if (err) next(err);
+        res.render("hostSignup");
+      });
+    }
+  } else {
+    res.render("hostSignup");
+  }
 });
 
-// Register is defined in the controlers/auth.js
-router.post("/becomeHost", register);
+router.post("/hostSignup", registerHost);
 
-// Render Login Page for users
-router.get("/becomeHost", (req, res) => {
-  res.render("becomeHost");
+// LOGGIN IN AS A HOST
+router.get("/loginHost", (req, res) => {
+  res.render("loginHost");
 });
 
-// Login
-router.post("/becomeHost", login);
+router.post("/loginHost", (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (email === "" || password === "") {
+    res.render("loginHost", {
+      errorMessage: "Please enter both, email and password to login.",
+    });
+    return;
+  }
+
+  Host.findOne({ email })
+    .then((host) => {
+      if (!host) {
+        console.log("Email not registered. ");
+        res.render("loginHost", {
+          errorMessage: "User not found and/or incorrect password.",
+        });
+        return;
+      } else if (bcrypt.compareSync(password, host.password)) {
+        req.session.currentUser = host;
+        res.redirect("/host");
+      } else {
+        console.log("Incorrect password. ");
+        res.render("routes/auth.routes", {
+          errorMessage: "User not found and/or incorrect password.",
+        });
+      }
+    })
+    .catch((error) => next(error));
+});
 
 // Logout
 router.post("/logout", (req, res, next) => {
@@ -63,8 +142,8 @@ router.post("/logout", (req, res, next) => {
   });
 });
 
-// User Profile Page
-router.get("/host", (req, res) => {
+// Host Profile Page
+router.get("/host", isLoggedIn, (req, res) => {
   res.render("host", { userInSession: req.session.currentUser });
 });
 

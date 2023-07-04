@@ -17,6 +17,6 @@ const HostSchema = new mongoose.Schema({
   dateJoined: { type: Date, default: Date.now },
 });
 
-const User = mongoose.model("Host", HostSchema);
+const Host = mongoose.model("Host", HostSchema);
 
 module.exports = Host;

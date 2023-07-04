@@ -3,15 +3,6 @@ const router = express.Router();
 
 const Review = require("../models/Review.model");
 
-// router.get("/review", async (req, res) => {
-//   // Get all reviews
-//   try {
-//     const reviews = await Review.find();
-//     res.json(reviews);
-//   } catch (error) {
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
 
 router.get("/review/:reviewId", async (req, res) => {
   // Get a specific review by ID
