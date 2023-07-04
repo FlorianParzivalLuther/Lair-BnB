@@ -3,7 +3,9 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Review = require("../models/Review.model");
+const User = require("../models/User.model");
 const Property = require("../models/Property.model");
+const cookieParser = require("cookie-parser");
 const {
   createProperty,
   deleteProperty,
@@ -69,12 +71,35 @@ router.post("/property/:propertyId/edit", updateProperty);
 // Delete Property
 router.post("/property/:propertyId", deleteProperty);
 
+// // Get a specific property by ID
+// router.get("/property/:propertyId", (req, res) => {
+//   Property.findById(req.params.propertyId)
+//     .then((property) => {
+//       if (property) {
+//         res.render("properties/property", { property });
+//       } else {
+//         return res.status(404).json({ error: "Property not found" });
+//       }
+//     })
+//     .catch((error) => {
+//       res.status(500).json({ error: "Internal server error" });
+//     });
+// });
+
+
+// Middleware to parse cookies
+const app = express();
+app.use(cookieParser());
+
 // Get a specific property by ID
 router.get("/property/:propertyId", (req, res) => {
   Property.findById(req.params.propertyId)
     .then((property) => {
       if (property) {
-        res.render("properties/property", { property });
+        // Retrieve user information from cookie
+        const userInfo = req.cookies.userInfo;
+
+        res.render("properties/property", { property, userInfo });
       } else {
         return res.status(404).json({ error: "Property not found" });
       }
@@ -83,6 +108,11 @@ router.get("/property/:propertyId", (req, res) => {
       res.status(500).json({ error: "Internal server error" });
     });
 });
+
+
+
+
+
 
 // Rendering example
 router.get("/property", async (req, res) => {
@@ -288,6 +318,7 @@ router.get("/property/:propertyId/review", async (req, res) => {
         return res.status(404).json({ error: "Property not found" });
       }
     })})
+
 
 
 
