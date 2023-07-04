@@ -72,7 +72,6 @@ const createTestProperties = () => {
             "Spacious common room with fireplace",
             "Stables for horses",
             "Scenic balcony overlooking the vast plains",
-            "Scenic balcony overlooking the vast plains",
           ],
           owner: new mongoose.Types.ObjectId(), // Set the owner ID with 'new'
           images: [

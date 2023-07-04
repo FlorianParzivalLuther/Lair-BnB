@@ -6,14 +6,48 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    
+    <link href="stylesheets/style.css" />
+
   </head>
   <body>
     <header>
 
-      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <a class="navbar-brand" href="#">LAIR</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#"><img
+                src="https://res.cloudinary.com/dxggkj0l2/image/upload/v1688409117/samples/properties/logo-lair_hgcwmg.png"
+                class="w-50 mr-3"
+                alt="Logo"
+              /><span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/">Home</a>
+            <a class="nav-item nav-link" href="/booking">Booking</a>
+            <a class="nav-item nav-link" href="/user">User</a>
+            <a class="nav-item nav-link" href="/review">Review</a>
+            <a class="nav-item nav-link disabled" href="#">Secret Lair</a>
+          </div>
+        </div>
+      </nav>
+
+      {{!-- <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="/">LAIR</a>
+        <a class="navbar-brand" href="/"><img
+            src="https://res.cloudinary.com/dxggkj0l2/image/upload/v1688409117/samples/properties/logo-lair_hgcwmg.png"
+            class="w-50 mr-3"
+            alt="Logo"
+          />LAIR</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -44,10 +78,11 @@
             </li>
           </ul>
         </div>
-      </nav>
+      </nav> --}}
+
     </header>
 
-    <div class="container mt-5">
+    <div class="container mt-1">
       <div class="row">
         <div class="col-md-12">
           <main
@@ -85,8 +120,14 @@
       3000); });
     </script>
 
+
+
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     ></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+
+
   </body>
 </html>
