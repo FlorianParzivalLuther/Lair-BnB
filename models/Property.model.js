@@ -17,6 +17,7 @@ const PropertySchema = new mongoose.Schema({
     min: 1,
     max: 5,
   },
+  reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
 });
 
 const Property = mongoose.model("Property", PropertySchema);

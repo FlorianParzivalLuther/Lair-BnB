@@ -194,7 +194,7 @@
     <div class="card-body bg-light">
 
 
-{{!-- {{#if userInSession}} --}}
+{{#if isLoggedIn}}
 <div class="container mb-4">{{! 1 }}
   <div class="card">
     <div class="card-body bg-light">
@@ -204,93 +204,30 @@
 </div>
 </div>
 </div>
-{{!-- {{/if}} --}}
+{{/if}}
 
 
 
 
 
 
-<div class="container mb-4">{{! 2 }}
-  <div class="card">
-    <div class="card-body bg-light">
-
-<div class="row">{{! 3 }}
-
-    <div class="col-8">
-        <div ref="UserName">Username</div>
-        <div class="mt-3"ref="UserComment">"This was an amazing stay here!öajsdfölasdjfölkasjdfölkjasdöfjasödjföasjdföljasdlöfjadsöljfölasdjföljasd"</div>
-    </div>
-
-    <div class="col-4">
-        <div>Rating: 10</div>
-    </div>
-    
-</div>{{! 3 }}
-
-</div>
-</div>
-</div>{{! 2 }}
-
-
-
-
-
-
-
-
-
-<div class="container mb-4">{{! 2 }}
-  <div class="card">
-    <div class="card-body bg-light">
-
-<div class="row">{{! 3 }}
-
-    <div class="col-8">
-        <div ref="UserName">Username</div>
-        <div class="mt-3"ref="UserComment">"This was an amazing stay here!öajsdfölasdjfölkasjdfölkjasdöfjasödjföasjdföljasdlöfjadsöljfölasdjföljasd"</div>
-    </div>
-
-    <div class="col-4">
-        <div>Rating: 10</div>
-    </div>
-    
-</div>{{! 3 }}
-
-</div>
-</div>
-</div>{{! 2 }}
-
-
-
-
-
-
-
-
-<div class="container mb-4">{{! 2 }}
-  <div class="card">
-    <div class="card-body bg-light">
-
-<div class="row">{{! 3 }}
-
-    <div class="col-8">
-        <div ref="UserName">Username</div>
-        <div class="mt-3"ref="UserComment">"This was an amazing stay here!öajsdfölasdjfölkasjdfölkjasdöfjasödjföasjdföljasdlöfjadsöljfölasdjföljasd"</div>
-    </div>
-
-    <div class="col-4">
-        <div>Rating: 10</div>
-    </div>
-    
-</div>{{! 3 }}
-
-</div>
-</div>
-</div>{{! 2 }}
-
-
-
+{{#each property.reviews}}
+        <div class="container mb-4">{{! 2 }}
+          <div class="card">
+            <div class="card-body bg-light">
+              <div class="row">
+                <div class="col-8">
+                  {{!-- <div>{{this.guest}}</div> --}}
+                  <div class="mt-3">{{this.comment}}</div>
+                </div>
+                <div class="col-4">
+                  <div>Rating: {{this.rating}}</div>
+                </div>
+              </div>{{! 3 }}
+            </div>
+          </div>
+        </div>
+      {{/each}}
 
 
 
