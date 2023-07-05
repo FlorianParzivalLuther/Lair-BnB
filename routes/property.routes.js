@@ -11,6 +11,10 @@ const {
   deleteProperty,
   updateProperty,
 } = require("../controllers/property");
+const {
+  isLoggedIn,
+  isLoggedOut,
+} = require("../middleware/route-guard.middleware.js");
 
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
@@ -52,13 +56,17 @@ app.use(cookieParser());
 
 // Get a specific property by ID
 router.get("/property/:propertyId", (req, res) => {
+  let isLoggedIn = false;
   Property.findById(req.params.propertyId)
     .then((property) => {
       if (property) {
-        // Retrieve user information from cookie
-        const userInfo = req.cookies.userInfo;
-
-        res.render("properties/property", { property, userInfo });
+        if (req.session.currentUser) {
+          isLoggedIn = true;
+        }
+        res.render("properties/property", {
+          property: property,
+          isLoggedIn: isLoggedIn,
+        });
       } else {
         return res.status(404).json({ error: "Property not found" });
       }
@@ -292,8 +300,8 @@ router.post("property/:propertyId/review", async (req, res) => {
     // Create a new review based on the request body
     const newReview = new Review({
       comment,
-      property: property._id,
-      guest: user._id,
+      property: Property._id,
+      guest: User._id,
       rating,
     });
 

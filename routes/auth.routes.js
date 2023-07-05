@@ -82,7 +82,7 @@ router.get("/user", isLoggedIn, (req, res) => {
 // SIGNING UP AS A HOST
 router.get("/hostSignup", async (req, res, next) => {
   if (req.session.currentUser) {
-    const host = await host.findOne(req.session.currentUser);
+    const host = await Host.findOne(req.session.currentUser);
     if (host) {
       res.redirect("/host");
     } else {

@@ -194,7 +194,8 @@
     <div class="card-body bg-light">
 
 
-{{!-- {{#if userInSession}} --}}
+
+{{#if isLoggedIn}}
 <div class="container mb-4">{{! 1 }}
   <div class="card">
     <div class="card-body bg-light">
@@ -204,7 +205,8 @@
 </div>
 </div>
 </div>
-{{!-- {{/if}} --}}
+{{/if}}
+
 
 
 
@@ -336,9 +338,9 @@
               <p class="card-text">Check-out: <input type="date" id="checkoutDate"></p>
               <p class="card-text" id="durationResult">Total stay: </p>
               <p class="card-text">Total amount: $<span id="totalAmount"></span></p>
-              {{!-- {{if isLoggedIn}} --}}
+              
               <a href="#" class="btn btn-primary">Add to Bookings</a>
-              {{!-- {{/if}} --}}
+              
             </div>
           </div>
         </div>
