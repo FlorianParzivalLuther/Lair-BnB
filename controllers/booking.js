@@ -1,5 +1,4 @@
 const Booking = require("../models/Booking.model");
-const Property = require("../models/Property.model");
 
 const createBooking = async (req, res) => {
   if (!req.session.currentUser) {
