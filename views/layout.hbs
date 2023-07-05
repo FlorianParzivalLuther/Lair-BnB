@@ -6,59 +6,86 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <link href="stylesheets/style.css" />
+
   </head>
   <body>
     <header>
 
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-        <a class="navbar-brand" href="/">LAIR</a>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">LAIR</a>
         <button
           class="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/booking">Bookings</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/property">Properties</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/review">Reviews</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/user">User</a>
-            </li>
-          </ul>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="#"><img
+                src="https://res.cloudinary.com/dxggkj0l2/image/upload/v1688409117/samples/properties/logo-lair_hgcwmg.png"
+                class="w-50 mr-3"
+                alt="Logo"
+              /><span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/">Home</a>
+            <a class="nav-item nav-link" href="/booking">Booking</a>
+            <a class="nav-item nav-link" href="/user">User</a>
+<a class="nav-link" href="/userSignup">Signup as a User</a>
+<a class="nav-link" href="/hostSignup">Signup as a Host</a>
+<a class="nav-link" href="/loginHost">Host</a>
+<a class="nav-link" href="/loginUser">User</a>
+            <a class="nav-item nav-link" href="/review">Review</a>
+            <a class="nav-item nav-link disabled" href="#">Secret Lair</a>
+          </div>
         </div>
       </nav>
+
+      
+
     </header>
 
-    <main
-      class="d-flex flex-column justify-content-center align-items-center flex-grow-1"
-    >
-      {{{body}}}
-      <!-- This will be replaced with the content of individual pages -->
-    </main>
+    <div class="container mt-1">
+      <div class="row">
+        <div class="col-md-12">
+          <main
+            class="d-flex flex-column justify-content-center align-items-left flex-grow-1"
+          >
+            {{{body}}}
+          </main>
+        </div>
+      </div>
+    </div>
 
-    <footer class="bg-secondary text-center py-4 fixed-bottom">
+    
+
+    <footer
+      id="scroll-footer"
+      class="bg-light text-center py-1 fixed-bottom"
+      style="opacity: 0; transition: opacity 0.5s;"
+    >
       <p>&copy; 2023 Lair. All rights reserved.</p>
     </footer>
+
+    <script>
+      var scrollFooter = document.getElementById('scroll-footer'); var
+      prevScrollPos = window.pageYOffset; var timer;
+      window.addEventListener('scroll', function() { clearTimeout(timer); var
+      currentScrollPos = window.pageYOffset; if (prevScrollPos <
+      currentScrollPos) { scrollFooter.style.opacity = '0.8'; } else {
+      scrollFooter.style.opacity = '0'; } prevScrollPos = currentScrollPos;
+      timer = setTimeout(function() { scrollFooter.style.opacity = '0'; },
+      3000); });
+    </script>
 
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     ></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
   </body>
 </html>
