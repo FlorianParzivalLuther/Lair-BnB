@@ -251,19 +251,15 @@ createTestProperties();
 // )
 
 router.get("/property/:propertyId/review", async (req, res) => {
-  Property.findById(req.params.propertyId)
-    .then((property) => {
-      if (property) {
-        console.log(property);
-        res.render("review", { property });
-      } else {
-        return res.status(404).json({ error: "Property not found" });
-      }
-    })})
-
-
-
-
+  Property.findById(req.params.propertyId).then((property) => {
+    if (property) {
+      console.log(property);
+      res.render("review", { property });
+    } else {
+      return res.status(404).json({ error: "Property not found" });
+    }
+  });
+});
 
 // POST route for submitting a review
 router.post("property/:propertyId/review", async (req, res) => {

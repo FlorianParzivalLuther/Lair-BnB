@@ -3,7 +3,6 @@ const router = express.Router();
 
 const Review = require("../models/Review.model");
 
-
 router.get("/review/:reviewId", async (req, res) => {
   // Get a specific review by ID
   try {

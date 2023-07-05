@@ -1,4 +1,34 @@
-{{!-- booking.hbs --}}
+<h1>Booking Details</h1>
+<div class="container">
+  <div class="booking-details">
+    <h3>Property ID: {{booking.property}}</h3>
+    <h3>Start Date: {{booking.startDate}}</h3>
+    <h3>End Date: {{booking.endDate}}</h3>
+    <h3>Number of Guests: {{booking.guests}}</h3>
+    <h3>Total Price: ${{booking.totalPrice}}</h3>
+  </div>
+  <div class="checkout">
+    <h2>Checkout</h2>
+    <form class="checkout-form" action="/checkout" method="POST">
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" name="firstName" required />
 
-  <h1>Booking Confirmation</h1>
-  <p>Your booking has been confirmed.</p>
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" name="lastName" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="cardNumber">Card Number</label>
+      <input type="text" id="cardNumber" name="cardNumber" required />
+
+      <label for="expiryDate">Expiry Date</label>
+      <input type="text" id="expiryDate" name="expiryDate" required />
+
+      <label for="cvv">CVV</label>
+      <input type="text" id="cvv" name="cvv" required />
+
+      <button type="submit" class="checkout-button">Proceed to Checkout</button>
+    </form>
+  </div>
+</div>
