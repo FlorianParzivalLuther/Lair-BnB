@@ -329,16 +329,18 @@
 
         <div class="container mb-4">
           <div class="card">
-            <div class="card-body">
+              <form class="card-body" action="/booking" method="POST">
               <h5 class="card-title">Price Details</h5>
               <p class="card-text">Price per night: ${{property.price}}</p>
-              <p class="card-text">Check-in: <input type="date" id="checkinDate"></p>
-              <p class="card-text">Check-out: <input type="date" id="checkoutDate"></p>
+              <p class="card-text">Check-in: <input type="date" id="checkinDate" name="startDate"></p>
+              <p class="card-text">Check-out: <input type="date" id="checkoutDate" name="endDate"></p>
               <p class="card-text" id="durationResult">Total stay: </p>
               <p class="card-text">Total amount: $<span id="totalAmount"></span></p>
+              <input type="hidden" name="totalPrice" id="totalPriceInput">
               {{!-- {{if isLoggedIn}} --}}
-              <a href="#" class="btn btn-primary">Add to Bookings</a>
+                <button type="submit" value="Add Bookings">Add Bookings</button>
               {{!-- {{/if}} --}}
+            </form>
             </div>
           </div>
         </div>
@@ -374,6 +376,8 @@
     // Display the total amount
     let totalAmountElement = document.getElementById("totalAmount");
     totalAmountElement.textContent = totalAmount;
+
+    
   }
 </script>
 
@@ -384,6 +388,7 @@
 
   checkinInput.addEventListener("change", calculateDurationAndAmount);
   checkoutInput.addEventListener("change", calculateDurationAndAmount);
+
 </script>
 {{! }}
 </div>

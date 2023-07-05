@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const Booking = require("../models/Booking.model");
+const { createBooking } = require("../controllers/booking");
 
+
+// Create Booking
+router.post("/booking/", createBooking);
 
 router.get("/booking/:bookingId", async (req, res) => {
   // Get a specific booking by ID

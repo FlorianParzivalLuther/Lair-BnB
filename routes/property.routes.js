@@ -237,41 +237,33 @@ const createTestProperties = () => {
 createTestProperties();
 //!
 
-router.get("/property/:propertyId/review", async (req, res) => {
-  Property.findById(req.params.propertyId).then((property) => {
-    if (property) {
-      console.log(property);
-      res.render("review", { property });
-    } else {
-      return res.status(404).json({ error: "Property not found" });
-    }
-  });
-});
+// router.get("property/:propertyId/review",(req,res)=>{
+// Property.findById(req.params.propertyId).then((property) => {
+//   if (property) {
+//     res.render("review", { property });
+//   } else {
+//     return res.status(404).json({ error: "Property not found" });
+//   }
+// }).catch((error))=>{
+//   res.status(500).json({error:"Internal server error"});
+// }
+// }
+// )
 
 router.get("/property/:propertyId/review", async (req, res) => {
-  try {
-    if (!req.user || !req.user.id) {
-      return res.status(401).json({ error: "Unauthorized" });
-    }
-    const userId = req.user.id;
+  Property.findById(req.params.propertyId)
+    .then((property) => {
+      if (property) {
+        console.log(property);
+        res.render("review", { property });
+      } else {
+        return res.status(404).json({ error: "Property not found" });
+      }
+    })})
 
-    if (!mongoose.Types.ObjectId.isValid(req.params.propertyId)) {
-      return res.status(400).json({ error: "Invalid property ID" });
-    }
 
-    const property = await Property.findById(req.params.propertyId);
-    if (property) {
-      console.log(property);
 
-      res.render("review", { property, userId });
-    } else {
-      return res.status(404).json({ error: "Property not found" });
-    }
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+
 
 // POST route for submitting a review
 router.post("property/:propertyId/review", async (req, res) => {
