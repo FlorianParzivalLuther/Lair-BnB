@@ -1,4 +1,4 @@
-<h1>Host Login</h1>
+{{!-- <h1>Host Login</h1>
 <form action="/loginHost" method="POST">
   <label for="email">Email:</label>
   <input type="email" id="email" name="email" required /><br /><br />
@@ -11,4 +11,51 @@
   {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>
   {{/if}}
+</form> --}}
+
+
+
+<div class="container mb-4 mt-4">
+  <div class="card">
+    <div class="card-body bg-light">
+      LOGIN AS A HOST
+</div></div></div>
+
+
+<div class="container mb-4">
+  <div class="card">
+    <div class="card-body bg-light">
+
+
+<form action="/loginHost" method="POST">
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      placeholder="example@examplemail.com"
+      name="email"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" id="password"  name="password" required />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Login</button>
+
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
 </form>
+<div class="container mb-4 mt-4">
+  <div class="card">
+    <div class="card-body bg-light">
+
+*Unveil thy presence as a Host in LAIR's sanctum. Therein, discover those who have sought thy shelter, their names etched upon the sacred pages of reservation. Seek this knowledge, and illumination shall follow.
+</div></div></div>
+</div></div></div>
