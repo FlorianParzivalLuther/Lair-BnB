@@ -3,7 +3,9 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Review = require("../models/Review.model");
+const User = require("../models/User.model");
 const Property = require("../models/Property.model");
+const cookieParser = require("cookie-parser");
 const {
   createProperty,
   deleteProperty,
@@ -12,31 +14,6 @@ const {
 
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
-
-//  router.get("/property", async (req, res) => {
-//    // Get all properties
-//    try {
-//      const properties = await Property.find();
-//      res.json(properties);
-//    } catch (error) {
-//      res.status(500).json({ error: "Internal server error" });
-//    }
-//  });
-
-// router.get("/property/:propertyId", async (req, res) => {
-//   // Get a specific property by ID
-//   try {
-//     const property = await Property.findById(req.params.propertyId);
-//     if (!property) {
-//       return res.status(404).json({ error: "Property not found" });
-//     }
-//     res.json(property);
-//   } catch (error) {
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
-
-// Render Property CREATE PAGE
 
 router.get("/property/create", (req, res) => {
   res.render("properties/create-property");
@@ -69,12 +46,19 @@ router.post("/property/:propertyId/edit", updateProperty);
 // Delete Property
 router.post("/property/:propertyId", deleteProperty);
 
+// Middleware to parse cookies
+const app = express();
+app.use(cookieParser());
+
 // Get a specific property by ID
 router.get("/property/:propertyId", (req, res) => {
   Property.findById(req.params.propertyId)
     .then((property) => {
       if (property) {
-        res.render("properties/property", { property });
+        // Retrieve user information from cookie
+        const userInfo = req.cookies.userInfo;
+
+        res.render("properties/property", { property, userInfo });
       } else {
         return res.status(404).json({ error: "Property not found" });
       }
@@ -253,45 +237,41 @@ const createTestProperties = () => {
 createTestProperties();
 //!
 
-
-
-
-
-
-
-
-
-
-// router.get("property/:propertyId/review",(req,res)=>{
-// Property.findById(req.params.propertyId).then((property) => {
-//   if (property) {
-//     res.render("review", { property });
-//   } else {
-//     return res.status(404).json({ error: "Property not found" });
-//   }
-// }).catch((error))=>{
-//   res.status(500).json({error:"Internal server error"});
-// }
-// }
-// )
-
-
-
+router.get("/property/:propertyId/review", async (req, res) => {
+  Property.findById(req.params.propertyId).then((property) => {
+    if (property) {
+      console.log(property);
+      res.render("review", { property });
+    } else {
+      return res.status(404).json({ error: "Property not found" });
+    }
+  });
+});
 
 router.get("/property/:propertyId/review", async (req, res) => {
-  Property.findById(req.params.propertyId)
-    .then((property) => {
-      if (property) {
-        console.log(property);
-        res.render("review", { property });
-      } else {
-        return res.status(404).json({ error: "Property not found" });
-      }
-    })})
+  try {
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    const userId = req.user.id;
 
+    if (!mongoose.Types.ObjectId.isValid(req.params.propertyId)) {
+      return res.status(400).json({ error: "Invalid property ID" });
+    }
 
+    const property = await Property.findById(req.params.propertyId);
+    if (property) {
+      console.log(property);
 
-
+      res.render("review", { property, userId });
+    } else {
+      return res.status(404).json({ error: "Property not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 // POST route for submitting a review
 router.post("property/:propertyId/review", async (req, res) => {
@@ -308,8 +288,6 @@ router.post("property/:propertyId/review", async (req, res) => {
     if (!property) {
       return res.status(404).json({ error: "Property not found" });
     }
-
-
 
     // Create a new review based on the request body
     const newReview = new Review({
@@ -329,16 +307,5 @@ router.post("property/:propertyId/review", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
