@@ -253,15 +253,6 @@ const createTestProperties = () => {
 createTestProperties();
 //!
 
-
-
-
-
-
-
-
-
-
 // router.get("property/:propertyId/review",(req,res)=>{
 // Property.findById(req.params.propertyId).then((property) => {
 //   if (property) {
@@ -275,23 +266,16 @@ createTestProperties();
 // }
 // )
 
-
-
-
 router.get("/property/:propertyId/review", async (req, res) => {
-  Property.findById(req.params.propertyId)
-    .then((property) => {
-      if (property) {
-        console.log(property);
-        res.render("review", { property });
-      } else {
-        return res.status(404).json({ error: "Property not found" });
-      }
-    })})
-
-
-
-
+  Property.findById(req.params.propertyId).then((property) => {
+    if (property) {
+      console.log(property);
+      res.render("review", { property });
+    } else {
+      return res.status(404).json({ error: "Property not found" });
+    }
+  });
+});
 
 // POST route for submitting a review
 router.post("property/:propertyId/review", async (req, res) => {
@@ -308,8 +292,6 @@ router.post("property/:propertyId/review", async (req, res) => {
     if (!property) {
       return res.status(404).json({ error: "Property not found" });
     }
-
-
 
     // Create a new review based on the request body
     const newReview = new Review({
@@ -329,16 +311,5 @@ router.post("property/:propertyId/review", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
