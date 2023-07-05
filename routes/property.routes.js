@@ -101,6 +101,9 @@ router.get("/property", async (req, res) => {
   }
 });
 
+
+
+
 //! cant understand why there is a json shown when disabled
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,

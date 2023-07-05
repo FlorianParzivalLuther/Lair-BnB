@@ -15,6 +15,9 @@ const HostSchema = new mongoose.Schema({
   phoneNumber: { type: String, required: true },
   isAdmin: { type: Boolean, default: false },
   dateJoined: { type: Date, default: Date.now },
+  createdProperties: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "Property" },
+  ],
 });
 
 const Host = mongoose.model("Host", HostSchema);
