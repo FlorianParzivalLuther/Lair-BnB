@@ -1,0 +1,29 @@
+{{! register.hbs }}
+
+<div id="form">
+  <h2>Signup as a Host</h2>
+  <form action="/hostSignup" method="POST">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required /><br /><br />
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" required /><br /><br />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required /><br /><br />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required /><br /><br />
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" required /><br /><br
+    />
+
+    <input type="submit" value="Register" />
+
+    {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
+    
+  </form>
+</div>

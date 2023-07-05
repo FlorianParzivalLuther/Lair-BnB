@@ -1,7 +1,7 @@
 {{! register.hbs }}
 
 <div id="form">
-  <h2>Signup</h2>
+  <h2>Signup as a Host</h2>
   <form action="/signup" method="POST">
     <label for="firstName">First Name:</label>
     <input type="text" id="firstName" name="firstName" required /><br /><br />
@@ -24,6 +24,6 @@
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
-    
+
   </form>
 </div>

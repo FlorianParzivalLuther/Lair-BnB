@@ -1,6 +1,6 @@
 <h1>Create Property</h1>
 
-<form action="/property/create" method="POST">
+<form action="/property/create" method="POST" enctype="multipart/form-data">
   <label for="title">Title:</label>
   <input type="text" id="title" name="title" required /><br />
 
@@ -14,12 +14,13 @@
   <input type="number" id="price" name="price" required /><br />
 
   <label for="amenities">Amenities:</label>
-  <textarea id="amenities" name="amenities" rows="4" required></textarea>
-  <small>Enter each amenity on a new line.</small><br />
+  <textarea id="amenities" name="amenities"></textarea><br />
 
-  <label for="images">Images:</label>
-  <input type="file" id="images" name="images" accept="image/*" multiple /><br
-  />
+  <input type="file" id="images" name="images" accept="image/*" multiple />
 
-  <input type="submit" value="Create Property" />
+  <label for="maxGuests">Max Guests:</label>
+  <input type="number" id="maxGuests" name="maxGuests" required /><br />
+
+  <button type="submit" value="Create Property">Create Property</button>
+
 </form>

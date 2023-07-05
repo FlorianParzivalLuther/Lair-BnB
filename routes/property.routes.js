@@ -2,53 +2,63 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-
+const Review = require("../models/Review.model");
+const User = require("../models/User.model");
 const Property = require("../models/Property.model");
-const { createProperty } = require("../controllers/property");
-const { updateProperty } = require("../controllers/property");
+const cookieParser = require("cookie-parser");
+const {
+  createProperty,
+  deleteProperty,
+  updateProperty,
+} = require("../controllers/property");
 
-//  router.get("/property", async (req, res) => {
-//    // Get all properties
-//    try {
-//      const properties = await Property.find();
-//      res.json(properties);
-//    } catch (error) {
-//      res.status(500).json({ error: "Internal server error" });
-//    }
-//  });
-
-// router.get("/property/:propertyId", async (req, res) => {
-//   // Get a specific property by ID
-//   try {
-//     const property = await Property.findById(req.params.propertyId);
-//     if (!property) {
-//       return res.status(404).json({ error: "Property not found" });
-//     }
-//     res.json(property);
-//   } catch (error) {
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
-
-// Render Property CREATE PAGE
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 router.get("/property/create", (req, res) => {
-  res.render("create-property");
+  res.render("properties/create-property");
 });
 
 // Post Property / Create Property
 
-router.post("/property/create", createProperty);
+router.post("/property/create", upload.array("images"), createProperty);
+
+// Get Edit page
+router.get("/property/:propertyId/edit", (req, res) => {
+  Property.findById(req.params.propertyId)
+    .then((property) => {
+      if (property) {
+        console.log(property);
+        res.render("properties/edit-property", { property });
+      } else {
+        return res.status(404).json({ error: "Property not found" });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ error: "Internal server error" });
+    });
+  //console.log(propertyId);
+});
 
 // Update Property
-// router.put()
+router.post("/property/:propertyId/edit", updateProperty);
+
+// Delete Property
+router.post("/property/:propertyId", deleteProperty);
+
+// Middleware to parse cookies
+const app = express();
+app.use(cookieParser());
 
 // Get a specific property by ID
 router.get("/property/:propertyId", (req, res) => {
   Property.findById(req.params.propertyId)
     .then((property) => {
       if (property) {
-        res.render("property", { property });
+        // Retrieve user information from cookie
+        const userInfo = req.cookies.userInfo;
+
+        res.render("properties/property", { property, userInfo });
       } else {
         return res.status(404).json({ error: "Property not found" });
       }
@@ -62,7 +72,7 @@ router.get("/property/:propertyId", (req, res) => {
 router.get("/property", async (req, res) => {
   try {
     const properties = await Property.find();
-    res.render("property", { properties });
+    res.render("properties/property", { properties });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
@@ -81,12 +91,11 @@ const createTestProperties = () => {
         new Property({
           title: `Rohan Retreat: "Edoras Haven"`,
           description: `Immerse yourself in the grandeur of the Rohirrim at "Edoras Haven." This majestic dwelling nestled amidst the rolling plains of Rohan offers a truly enchanting experience. The warm wooden interiors reflect the courageous spirit of the Rohirrim, while panoramic views of the vast landscape captivate your senses. Prepare for an adventure of a lifetime as you traverse the trails and feel the breeze of the grasslands. Giddy-up, for Rohan awaits!`,
-          location: `Rohan, "Edoras Haven" promises tranquility amidst nature's embrace.`,
+          location: `Rohan, MiddleEarth South, 12345 ME`,
           price: 150,
           amenities: [
             "Spacious common room with fireplace",
             "Stables for horses",
-            "Scenic balcony overlooking the vast plains",
             "Scenic balcony overlooking the vast plains",
           ],
           owner: new mongoose.Types.ObjectId(), // Set the owner ID with 'new'
@@ -98,12 +107,13 @@ const createTestProperties = () => {
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376504/samples/properties/download_kg9cls.jpg",
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376504/samples/properties/download-2_cjaa4d.jpg",
           ],
+          maxGuests: 5,
         }),
 
         new Property({
           title: `Moria Marvel: "Gloamheart Abode"`,
           description: `Delve into the depths of the earth and uncover the hidden wonders of "Gloamheart Abode" in the legendary city of Moria. This subterranean sanctuary boasts intricate stone craftsmanship, reminiscent of the Dwarven heritage. Explore the labyrinthine tunnels and uncover the mysteries of Moria at your own pace. Get ready to be amazed by the ethereal glow of the phosphorescent fungi, casting an otherworldly light. Courage, dear traveler, for Moria beckons!`,
-          location: `Situated deep within the fabled mines of Moria, "Gloamheart Abode" offers an unforgettable subterranean experience`,
+          location: `Mines of Moria, MiddleEarth North, 12345 ME`,
           price: 120,
           amenities: [
             "Dwarf-made stone bathtub",
@@ -119,12 +129,13 @@ const createTestProperties = () => {
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376532/samples/properties/download_bg9zoh.jpg",
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376532/samples/properties/download-2_fvjhcm.jpg",
           ],
+          maxGuests: 5,
         }),
 
         new Property({
           title: `Rivendell Refuge: "Starlight Haven"`,
           description: `Find solace in the serene sanctuary of "Starlight Haven," nestled amidst the breathtaking beauty of Rivendell. This elven abode offers respite from the tumultuous outside world. Elegant arches and ethereal waterfalls will transport you to a realm of tranquility. Delight in the elven craftsmanship, adorned with intricate carvings and delicate tapestries. Allow the melodies of nature to soothe your soul as you discover the wisdom of the elves. Welcome, weary traveler, to Rivendell's embrace.`,
-          location: `Perched gracefully in the heart of Rivendell, "Starlight Haven" provides a haven of peace and serenity.`,
+          location: `Center-Rivendell, MiddleEarth South, 12345 ME`,
           price: 180,
           amenities: [
             "Serene meditation gardens",
@@ -140,12 +151,13 @@ const createTestProperties = () => {
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376522/samples/properties/download-3_qwj0ss.jpg",
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376522/samples/properties/download-2_br4dwi.jpg",
           ],
+          maxGuests: 5,
         }),
 
         new Property({
           title: `The Shire Hideaway: "Hobbiton Meadows"`,
           description: `Embark on a delightful journey to the enchanting "Hobbiton Meadows," a cozy haven nestled in the heart of the Shire. Immerse yourself in the idyllic lifestyle of the hobbits, surrounded by lush greenery and quaint hobbit holes. Savor hearty meals and indulgent second breakfasts while basking in the simple pleasures of life. Wander through the vibrant gardens and experience the warmth and hospitality of the hobbit community. Welcome, dear hobbit-at-heart, to the land of the Shire!`,
-          location: `Tucked away in the picturesque landscape of the Shire, "Hobbiton Meadows" promises a whimsical retreat.`,
+          location: `GollumCreek Village, MiddleEarth West, 12345 ME`,
           price: 90,
           amenities: [
             "Cozy fireplace for evenings of storytelling",
@@ -161,12 +173,13 @@ const createTestProperties = () => {
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376490/samples/properties/download-1_bmuh9l.jpg",
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376490/samples/properties/download-3_carelc.jpg",
           ],
+          maxGuests: 5,
         }),
 
         new Property({
           title: `Minas Morgul Enigma: "Shadow's Embrace"`,
           description: `Brace yourself for an eerie yet captivating experience at "Shadow's Embrace," situated within the haunted city of Minas Morgul. This ethereal dwelling offers a unique blend of darkness and mystique. Intricate Gothic architecture and flickering torches set the stage for an extraordinary journey. Embrace the whispers of the past as you explore the chilling beauty that lingers within these forsaken walls. Venture forth, intrepid traveler, for Minas Morgul reveals its secrets to those brave enough to seek them.`,
-          location: `Tucked within the haunting city of Minas Morgul, "Shadow's Embrace" invites you to unravel its dark enchantment.`,
+          location: `Minas Morgul-City, MiddleEarth North, 12345 ME`,
           price: 200,
           amenities: [
             "Moonlit rooftop terrace",
@@ -182,12 +195,13 @@ const createTestProperties = () => {
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688379372/samples/properties/download-7_jtkzsu.jpg",
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688379372/samples/properties/download_xinm7t.jpg",
           ],
+          maxGuests: 5,
         }),
 
         new Property({
           title: `Erebor Abundance: "Dragon's Hoard"`,
           description: `Prepare to be awe-struck by the grandeur of "Dragon's Hoard," a regal abode nestled deep within the heart of Erebor, the Lonely Mountain. Marvel at the Dwarven craftsmanship that adorns every corner, showcasing the wealth of the mountain kingdom. Enter a world of opulence and embrace the echoes of a bygone era. Immerse yourself in the tales of the dwarves and their fabled treasure. Claim your own share of grandeur within the halls of Erebor, noble traveler!`,
-          location: `Set within the majestic Lonely Mountain, "Dragon's Hoard" presents a realm of riches and splendor`,
+          location: `Lonely Mountain, MiddleEarth Center, 12345 ME`,
           price: 250,
           amenities: [
             "Ornate banquet hall for feasts fit for a king",
@@ -203,6 +217,7 @@ const createTestProperties = () => {
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376252/samples/properties/download-2_hglvfr.jpg",
             "https://res.cloudinary.com/dxggkj0l2/image/upload/v1688376252/samples/properties/download-8_kcyphr.jpg",
           ],
+          maxGuests: 5,
         }),
       ];
 
@@ -221,5 +236,76 @@ const createTestProperties = () => {
 
 createTestProperties();
 //!
+
+router.get("/property/:propertyId/review", async (req, res) => {
+  Property.findById(req.params.propertyId).then((property) => {
+    if (property) {
+      console.log(property);
+      res.render("review", { property });
+    } else {
+      return res.status(404).json({ error: "Property not found" });
+    }
+  });
+});
+
+router.get("/property/:propertyId/review", async (req, res) => {
+  try {
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+    const userId = req.user.id;
+
+    if (!mongoose.Types.ObjectId.isValid(req.params.propertyId)) {
+      return res.status(400).json({ error: "Invalid property ID" });
+    }
+
+    const property = await Property.findById(req.params.propertyId);
+    if (property) {
+      console.log(property);
+
+      res.render("review", { property, userId });
+    } else {
+      return res.status(404).json({ error: "Property not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// POST route for submitting a review
+router.post("property/:propertyId/review", async (req, res) => {
+  try {
+    const { comment, rating } = req.body;
+
+    // Validate the rating value
+    if (rating < 1 || rating > 10) {
+      return res.status(400).json({ error: "No rating selected - Error" });
+    }
+
+    // Find the property by ID
+    const property = await Property.findById(propertyId);
+    if (!property) {
+      return res.status(404).json({ error: "Property not found" });
+    }
+
+    // Create a new review based on the request body
+    const newReview = new Review({
+      comment,
+      property: property._id,
+      guest: user._id,
+      rating,
+    });
+
+    // Save the review to the database
+    const savedReview = await newReview.save();
+    console.log("Safed Review");
+
+    // Redirect the user to the home page or perform any other desired action
+    res.redirect("/");
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 module.exports = router;

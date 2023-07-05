@@ -32,6 +32,14 @@ const app = express();
 // );
 
 
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: "dnit8gqhj",
+  api_key: "285367553745546",
+  api_secret: "ehIqrvtwvlG-CdVUAdgId5xTMgU",
+});
+
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 require("./config/session.config")(app);
@@ -46,7 +54,6 @@ app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 const authRoutes = require("./routes/auth.routes");
 app.use("/", authRoutes);
 
-
 const homeRoutes = require("./routes/home.routes");
 app.use("/", homeRoutes);
 const bookingRoutes = require("./routes/booking.routes");
@@ -59,6 +66,13 @@ const reviewRoutes = require("./routes/review.routes");
 app.use("/", reviewRoutes);
 const userRoutes = require("./routes/user.routes");
 app.use("/", userRoutes);
+const hostRoutes = require("./routes/host.routes");
+app.use("/", hostRoutes);
+
+const userLogin = require("./routes/auth.routes");
+app.use("/", userLogin);
+const hostLogin = require("./routes/auth.routes");
+app.use("/", hostLogin);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
