@@ -6,7 +6,7 @@ const PropertySchema = new mongoose.Schema({
   location: { type: String, required: true },
   price: { type: Number, required: true },
   amenities: [String],
-  owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: "Host" },
   images: [String], //6 pics
   maxGuests: {
     type: Number,
