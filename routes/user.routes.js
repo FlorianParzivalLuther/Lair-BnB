@@ -4,16 +4,6 @@ const router = express.Router();
 const User = require("../models/User.model");
 
 
-// router.get("/user", async (req, res) => {
-//   // Get all users
-//   try {
-//     const users = await User.find();
-//     res.json(users);
-//   } catch (error) {
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
-
 router.get("/user/:userId", async (req, res) => {
   // Get a specific user by ID
   try {
