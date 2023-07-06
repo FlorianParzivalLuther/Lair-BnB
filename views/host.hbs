@@ -1,11 +1,161 @@
-{{#if userInSession}}
-  <h2>Welcome, {{userInSession.firstName}}!</h2>
-  <p>This is your profile page my friend!</p>
-  <button>
-    <a href="/host">Reload the page</a>
-  </button>
+
+
+<div class="container">
+  <div class="row mb-4 mt-8">
+    {{#each properties}}
+
+      <div class="col-md-4">
+        <div class="card mb-4 mt-4">
+          <a href="property/{{this._id}}" class="card-link">
+            <img
+              src="{{this.images.[1]}}"
+              class="card-img-top rounded"
+              alt="Property Image"
+            />
+            <div class="card-body">
+              <h5
+                class="card-title text-truncate"
+                style="max-height: 3.6em; overflow: hidden; font-size: 1.2rem;"
+              >{{this.title}}</h5>
+              <p
+                class="card-text text-truncate"
+                style="max-height: 5.2em; overflow: hidden; font-size: 0.9rem;"
+              >{{this.description}}</p>
+              <p class="card-text"><span
+                  style="font-weight: bold;"
+                >{{this.price}} € per night including VAT.</span></p>
+            </div>
+          </a>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+
+
+
+
+
+
+{{#if hostInSession}}
+  <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <div class="container mb-4 mt-4">
+          <div class="card">
+            <div class="card-body bg-light">
+              WELCOME HOME MASTER/MISTRESS
+            </div></div></div>
+
+        <div class="row">
+
+          <div class="col-8">
+            <div class="container mb-4 mt-4">
+              <div class="card">
+                <div class="card-body bg-light">
+                  <div class="row">First Name: {{hostInSession.firstName}}</div>
+                  <div class="row">Email registered:
+                    {{hostInSession.email}}</div>
+                  <div class="row">PhoneNumber registered:
+                    {{hostInSession.phoneNumber}}</div>
+                  <div class="row">Member since:
+                    {{hostInSession.dateJoined}}</div>
+
+                </div></div></div>
+                <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <a href="/host">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-lg btn-block"
+                >add/change data</button>
+              </a>
+
+        </div></div></div>
+        <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        
+        <h2>Your properties:</h2>
+{{#each properties}}
+  <div class="property">
+    <h2>{{this.title}}</h2>
+    <p>{{this.location}}</p>
+    <p>{{this.description}}</p>
+    <h2>{{this.price}}</h2>
+    <p>{{this.amenities}}</p>
+    <p>{{this.images}}</p>
+    <h2>{{this.maxGuests}}</h2>
+    <p>{{this.rating}}</p>
+    <p>{{this.reviews}}</p>
+  </div>
+{{/each}}
+        </div></div></div>
+
+          </div>
+
+      <div class="col-4">
+  <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <img src="https://res.cloudinary.com/dxggkj0l2/image/upload/v1688562365/samples/properties/download_s7klnx.jpg" alt="Special Image" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+    </div>
+  </div>
+  <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <a href="/host">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-lg btn-block"
+                >change picture</button>
+              </a>
+        </div></div></div>
+</div>
+
+        <div class="container mb-4 mt-4">
+          <div class="card">
+            <div class="card-body bg-light">
+
+
+
+              <form id="logout-form" action="/logout" method="POST">
+  <button type="submit" class="btn btn-secondary btn-lg btn-block mt-4">Logout</button>
+</form>
+
+
+<a href="/property/create">
+                <button
+                  type="button"
+                  class="btn btn-success btn-lg btn-block "
+                >Create Property</button>
+              </a>
+
+            </div></div></div>
+            
+                
+              
+
+
+
+  
+  
+
+            
+
+      </div></div></div>
 {{else}}
-
-  <br /><p>Still no logged in user, sorry!</p>
-
+  <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <div class="container mb-4 mt-4">
+          <div class="card">
+            <div class="card-body bg-light">
+              NOT LOGGED IN!
+            </div></div></div>
+      </div></div></div>
 {{/if}}
+

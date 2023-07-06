@@ -1,26 +1,90 @@
-<h1>Create Property</h1>
+
+
+<div class="container mb-4 mt-4">
+  <div class="card">
+    <div class="card-body bg-light">
+      CREATE A NEW LAIR
+</div></div></div>
+
+
+
+
+<div class="container mb-4 mt-4">
+  <div class="card">
+    <div class="card-body bg-light">
 
 <form action="/property/create" method="POST" enctype="multipart/form-data">
-  <label for="title">Title:</label>
-  <input type="text" id="title" name="title" required /><br />
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input type="text" class="form-control" id="title" name="title" required />
+  </div>
 
-  <label for="description">Description:</label>
-  <textarea id="description" name="description" required></textarea><br />
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <textarea class="form-control" id="description" name="description" required></textarea>
+  </div>
 
-  <label for="location">Location:</label>
-  <input type="text" id="location" name="location" required /><br />
+  <div class="form-group">
+    <label for="location">Location:</label>
+    <input type="text" class="form-control" id="location" name="location" required />
+  </div>
 
-  <label for="price">Price:</label>
-  <input type="number" id="price" name="price" required /><br />
+  <div class="form-group">
+    <label for="price">Price:</label>
+    <input type="number" class="form-control" id="price" name="price" required />
+  </div>
 
-  <label for="amenities">Amenities:</label>
-  <textarea id="amenities" name="amenities"></textarea><br />
 
-  <input type="file" id="images" name="images" accept="image/*" multiple />
+{{!-- <div class="form-group">
+  <label for="images">Image Upload:</label>
+  <input type="text" id="image1" class="form-control mt-4" name="images.[1]" required />
+  <input type="text" id="image2" class="form-control mt-4" name="images.[2]" required />
+  <input type="text" id="image3" class="form-control mt-4" name="images.[3]" required />
+</div> --}}
 
-  <label for="maxGuests">Max Guests:</label>
-  <input type="number" id="maxGuests" name="maxGuests" required /><br />
+ <div class="form-group">
+  <label for="image">Images :</label>
+  <input type="text" id="image1"  class="form-control mt-4" name="images[]" required />
+  <input type="text" id="image2" class="form-control mt-4" name="images[]" required />
+  <input type="text" id="image3" class="form-control mt-4" name="images[]" required />
+  <input type="text" id="image4" class="form-control mt-4" name="images[]" required />
+  <input type="text" id="image5" class="form-control mt-4" name="images[]" required />
+  <input type="text" id="image6" class="form-control mt-4" name="images[]" required />
+</div>
 
-  <button type="submit" value="Create Property">Create Property</button>
+  <div class="form-group">
+  <label for="amenity">Amenities :</label>
+  <input type="text" id="amenity1"  class="form-control mt-4" name="amenities[]" required />
+  <input type="text" id="amenity2" class="form-control mt-4" name="amenities[]" required />
+  <input type="text" id="amenity3" class="form-control mt-4" name="amenities[]" required />
+</div>
 
+
+
+{{!-- <div class="form-group">
+    <label for="images">Images :</label>
+    <input type="text" class="form-control" id="images" name="images" required />
+  </div> --}}
+
+
+  <div class="form-group">
+    <label for="maxGuests">Max Guests:</label>
+    <input type="number" class="form-control" id="maxGuests" name="maxGuests" required />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Create Property</button>
 </form>
+
+
+</div></div></div>
+
+
+
+
+
+
+<div class="container mb-4 mt-4">
+  <div class="card">
+    <div class="card-body bg-light">
+*Take heed and affix thy name to the scrolls of LAIR, as a host to receive guests of unparalleled eminence. In this fellowship of exclusivity, thou shalt assume the mantle of a guardian, opening the doors of thy abode to those adorned with distinction. Embrace this noble role, wherein the threads of fate intertwine, as wanderers of rare fortune seek respite within the realms of enchantment that we proffer. Thus, inscribe thy legacy as a custodian of hospitality, and partake in the timeless tapestry where extraordinary encounters and enduring remembrances find their genesis.</div></div></div>
+</div></div></div>

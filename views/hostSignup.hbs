@@ -1,6 +1,6 @@
 {{! register.hbs }}
 
-<div id="form">
+{{!-- <div id="form">
   <h2>Signup as a Host</h2>
   <form action="/hostSignup" method="POST">
     <label for="firstName">First Name:</label>
@@ -26,4 +26,89 @@
     {{/if}}
     
   </form>
-</div>
+</div> --}}
+
+
+<div class="container mb-4 mt-4">
+  <div class="card">
+    <div class="card-body bg-light">
+      SIGN UP AS A HOST
+</div></div></div>
+
+
+
+<div class="container mb-4">
+  <div class="card">
+    <div class="card-body bg-light">
+
+
+
+<form action="/hostSignup" method="POST">
+
+  <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="firstName"
+      name="firstName"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="lastName"
+      name="lastName"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      placeholder="example@examplemail.com"
+      name="email"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="phoneNumber">Phone Number:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="phoneNumber"
+      name="phoneNumber"
+      required
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enroll</button>
+
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
+</form>
+<div class="container mb-4 mt-4">
+  <div class="card">
+    <div class="card-body bg-light">
+*Take heed and affix thy name to the scrolls of LAIR, as a host to receive guests of unparalleled eminence. In this fellowship of exclusivity, thou shalt assume the mantle of a guardian, opening the doors of thy abode to those adorned with distinction. Embrace this noble role, wherein the threads of fate intertwine, as wanderers of rare fortune seek respite within the realms of enchantment that we proffer. Thus, inscribe thy legacy as a custodian of hospitality, and partake in the timeless tapestry where extraordinary encounters and enduring remembrances find their genesis.</div></div></div>
+</div></div></div>

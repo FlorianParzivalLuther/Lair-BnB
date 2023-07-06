@@ -1,5 +1,6 @@
 const express = require("express");
 const Property = require("../models/Property.model");
+const Host = require("../models/Host.model");
 
 // CREATE PROPERTY FUNCTION
 const createProperty = async (req, res) => {
@@ -9,24 +10,25 @@ const createProperty = async (req, res) => {
     location,
     price,
     amenities,
-    owner,
+    images,
     rating,
     maxGuests,
   } = req.body;
 
-  const images = [];
-  if (req.files && req.files.images) {
-    const imageFiles = Array.isArray(req.files.images)
-      ? req.files.images
-      : [req.files.images];
+  // const images = [];
+  // if (req.files && req.files.images) {
+  //   const imageFiles = Array.isArray(req.files.images)
+  //     ? req.files.images
+  //     : [req.files.images];
 
-    for (const file of imageFiles) {
-      const result = await cloudinary.uploader.upload(file.path);
-      images.push(result.secure_url);
-    }
-  }
+  //   for (const file of imageFiles) {
+  //     const result = await cloudinary.uploader.upload(file.path);
+  //     images.push(result.secure_url);
+  //   }
+  //}
 
   console.log(req.body);
+
   if (
     !title ||
     !description ||
@@ -41,6 +43,7 @@ const createProperty = async (req, res) => {
   }
 
   try {
+    const owner = req.session.currentHost._id;
     const newProperty = new Property({
       title,
       description,
@@ -52,8 +55,11 @@ const createProperty = async (req, res) => {
       rating,
       maxGuests,
     });
-
     const savedProperty = await newProperty.save();
+    const updateHost = await Host.findByIdAndUpdate(owner, {
+      $push: { createdProperties: savedProperty._id },
+    });
+    console.log(updateHost);
     //console.log(savedProperty);
     res.status(201).redirect(`/property/${savedProperty._id}`);
   } catch (err) {

@@ -7,14 +7,16 @@ const bcrypt = require("bcrypt");
 const { login } = require("../controllers/auth.js");
 const { verifyToken } = require("../middleware/auth.middleware.js");
 const {
-  isLoggedIn,
-  isLoggedOut,
+  isUserLoggedIn,
+  isUserLoggedOut,
+  isHostLoggedIn,
+  isHostLoggedOut,
 } = require("../middleware/route-guard.middleware.js");
 
 // SIGNING UP AS A USER
 router.get("/userSignup", async (req, res, next) => {
   if (req.session.currentUser) {
-    const user = await user.findOne(req.session.currentUser);
+    const user = await User.findOne(req.session.currentUser);
     if (user) {
       res.redirect("/user");
     } else {
@@ -31,11 +33,11 @@ router.get("/userSignup", async (req, res, next) => {
 router.post("/userSignup", registerUser);
 
 // LOGGIN IN AS A USER
-router.get("/loginUser", isLoggedOut, (req, res) => {
+router.get("/loginUser", isUserLoggedOut, (req, res) => {
   res.render("loginUser");
 });
 
-router.post("/loginUser", isLoggedOut, (req, res, next) => {
+router.post("/loginUser", (req, res, next) => {
   const { email, password } = req.body;
 
   if (email === "" || password === "") {
@@ -50,39 +52,27 @@ router.post("/loginUser", isLoggedOut, (req, res, next) => {
       if (!user) {
         console.log("Email not registered. ");
         res.render("loginUser", {
-          errorMessage: "User not found and/or incorrect password.",
+          errorMessage: "User not found",
         });
         return;
-      } else if (bcrypt.compareSync(password, user.password)) {
-        req.session.currentUser = user;
-        res.redirect("/user");
       } else {
-        console.log("Incorrect password. ");
-        res.render("loginUser", {
-          errorMessage: "User not found and/or incorrect password.",
-        });
+        if (bcrypt.compareSync(password, user.password)) {
+          req.session.currentUser = user;
+          res.redirect("/user");
+        } else {
+          res.render("loginUser", {
+            errorMessage: "Incorrect password.",
+          });
+        }
       }
     })
     .catch((error) => next(error));
 });
 
-// Logout
-router.post("/logout", (req, res, next) => {
-  req.session.destroy((err) => {
-    if (err) next(err);
-    res.redirect("/");
-  });
-});
-
-// User Profile Page
-router.get("/user", isLoggedIn, (req, res) => {
-  res.render("user", { userInSession: req.session.currentUser });
-});
-
 // SIGNING UP AS A HOST
 router.get("/hostSignup", async (req, res, next) => {
   if (req.session.currentUser) {
-    const host = await host.findOne(req.session.currentUser);
+    const host = await Host.findOne(req.session.currentUser);
     if (host) {
       res.redirect("/host");
     } else {
@@ -99,7 +89,7 @@ router.get("/hostSignup", async (req, res, next) => {
 router.post("/hostSignup", registerHost);
 
 // LOGGIN IN AS A HOST
-router.get("/loginHost", (req, res) => {
+router.get("/loginHost", isHostLoggedOut, (req, res) => {
   res.render("loginHost");
 });
 
@@ -112,23 +102,22 @@ router.post("/loginHost", (req, res, next) => {
     });
     return;
   }
-
   Host.findOne({ email })
     .then((host) => {
       if (!host) {
-        console.log("Email not registered. ");
         res.render("loginHost", {
-          errorMessage: "User not found and/or incorrect password.",
+          errorMessage: "Host not found and/or incorrect password.",
         });
         return;
-      } else if (bcrypt.compareSync(password, host.password)) {
-        req.session.currentUser = host;
-        res.redirect("/host");
       } else {
-        console.log("Incorrect password. ");
-        res.render("routes/auth.routes", {
-          errorMessage: "User not found and/or incorrect password.",
-        });
+        if (bcrypt.compareSync(password, host.password)) {
+          req.session.currentHost = host;
+          res.redirect("/host");
+        } else {
+          res.render("loginHost", {
+            errorMessage: "Incorrect password.",
+          });
+        }
       }
     })
     .catch((error) => next(error));
@@ -138,13 +127,9 @@ router.post("/loginHost", (req, res, next) => {
 router.post("/logout", (req, res, next) => {
   req.session.destroy((err) => {
     if (err) next(err);
+    res.clearCookie("connect.sid"); // Replace "session-id" with the actual name of your session cookie
     res.redirect("/");
   });
-});
-
-// Host Profile Page
-router.get("/host", isLoggedIn, (req, res) => {
-  res.render("host", { userInSession: req.session.currentUser });
 });
 
 module.exports = router;
