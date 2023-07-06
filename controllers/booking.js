@@ -1,4 +1,5 @@
 const Booking = require("../models/Booking.model");
+const Property = require("../models/Property.model");
 
 const createBooking = async (req, res) => {
   if (!req.session.currentUser) {
@@ -55,11 +56,17 @@ const findBooking = async (req, res) => {
   // Get a specific booking by ID
 
   try {
-    const booking = await Booking.findById(req.params.bookingId);
+    const booking = await Booking.findById(req.params.bookingId)
+      .populate("property")
+      .exec();
+    console.log(booking);
     if (!booking) {
       return res.status(404).json({ error: "Booking not found" });
     }
-    res.render("booking", { booking });
+
+    res.render("booking", { booking, property: booking.property });
+
+    console.log(booking.property);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
