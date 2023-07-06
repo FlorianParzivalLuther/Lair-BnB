@@ -9,22 +9,23 @@ const createProperty = async (req, res) => {
     location,
     price,
     amenities,
+    images,
     owner,
     rating,
     maxGuests,
   } = req.body;
 
-  const images = [];
-  if (req.files && req.files.images) {
-    const imageFiles = Array.isArray(req.files.images)
-      ? req.files.images
-      : [req.files.images];
+  // const images = [];
+  // if (req.files && req.files.images) {
+  //   const imageFiles = Array.isArray(req.files.images)
+  //     ? req.files.images
+  //     : [req.files.images];
 
-    for (const file of imageFiles) {
-      const result = await cloudinary.uploader.upload(file.path);
-      images.push(result.secure_url);
-    }
-  }
+  //   for (const file of imageFiles) {
+  //     const result = await cloudinary.uploader.upload(file.path);
+  //     images.push(result.secure_url);
+  //   }
+  //}
 
   console.log(req.body);
   if (

@@ -1,21 +1,4 @@
-{{#if hostInSession}}
-  <h2>Welcome, {{hostInSession.firstName}}!</h2>
-  <p>This is your host profile page my friend!</p>
-  <button>
-    <a href="/host">Reload the page</a>
-  </button>
-  <button>
-    <a href="/property/create">Add new property</a>
-  </button>
-  <form id="logout-form" action="/logout" method="POST">
-    <button>Logout</button>
-  </form>
 
-{{else}}
-
-  <br /><p>Still no logged in user, sorry!</p>
-
-{{/if}}
 
 <div class="container">
   <div class="row mb-4 mt-8">
@@ -48,3 +31,115 @@
     {{/each}}
   </div>
 </div>
+
+
+
+
+
+
+
+{{#if hostInSession}}
+  <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <div class="container mb-4 mt-4">
+          <div class="card">
+            <div class="card-body bg-light">
+              WELCOME HOME MASTER/MISTRESS
+            </div></div></div>
+
+        <div class="row">
+
+          <div class="col-8">
+            <div class="container mb-4 mt-4">
+              <div class="card">
+                <div class="card-body bg-light">
+                  <div class="row">First Name: {{hostInSession.firstName}}</div>
+                  <div class="row">Email registered:
+                    {{hostInSession.email}}</div>
+                  <div class="row">PhoneNumber registered:
+                    {{hostInSession.phoneNumber}}</div>
+                  <div class="row">Member since:
+                    {{hostInSession.dateJoined}}</div>
+
+                </div></div></div>
+                <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <a href="/host">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-lg btn-block"
+                >add/change data</button>
+              </a>
+        </div></div></div>
+          </div>
+
+      <div class="col-4">
+  <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <img src="https://res.cloudinary.com/dxggkj0l2/image/upload/v1688562365/samples/properties/download_s7klnx.jpg" alt="Special Image" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+    </div>
+  </div>
+  <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <a href="/host">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-lg btn-block"
+                >change picture</button>
+              </a>
+        </div></div></div>
+</div>
+
+        <div class="container mb-4 mt-4">
+          <div class="card">
+            <div class="card-body bg-light">
+
+              {{!-- <a href="/host">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-lg btn-block "
+                >Reload the page</button>
+              </a> --}}
+
+              <form id="logout-form" action="/logout" method="POST">
+  <button type="submit" class="btn btn-secondary btn-lg btn-block mt-4">Logout</button>
+</form>
+
+
+<a href="/property/create">
+                <button
+                  type="button"
+                  class="btn btn-success btn-lg btn-block "
+                >Create Property</button>
+              </a>
+
+            </div></div></div>
+            
+                
+              
+
+
+
+  
+  
+
+            
+
+      </div></div></div>
+{{else}}
+  <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <div class="container mb-4 mt-4">
+          <div class="card">
+            <div class="card-body bg-light">
+              NOT LOGGED IN!
+            </div></div></div>
+      </div></div></div>
+{{/if}}
+
