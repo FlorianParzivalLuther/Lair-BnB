@@ -16,7 +16,7 @@ const {
 // SIGNING UP AS A USER
 router.get("/userSignup", async (req, res, next) => {
   if (req.session.currentUser) {
-    const user = await user.findOne(req.session.currentUser);
+    const user = await User.findOne(req.session.currentUser);
     if (user) {
       res.redirect("/user");
     } else {
