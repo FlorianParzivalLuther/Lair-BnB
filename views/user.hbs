@@ -1,9 +1,12 @@
 {{#if userInSession}}
   <h2>Welcome, {{userInSession.firstName}}!</h2>
-  <p>This is your profile page my friend!</p>
+  <p>This is your user profile page my friend!</p>
   <button>
     <a href="/user">Reload the page</a>
   </button>
+  <form id="logout-form" action="/logout" method="POST">
+    <button>Logout</button>
+  </form>
 {{else}}
 
   <br /><p>Still no logged in user, sorry!</p>

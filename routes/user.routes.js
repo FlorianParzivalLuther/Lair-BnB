@@ -1,26 +1,52 @@
 const express = require("express");
 const router = express.Router();
-
+const Host = require("../models/Host.model");
 const User = require("../models/User.model");
 
 router.get("/user", async (req, res) => {
-  try {
-    const currentUser = req.session.currentUser;
-    console.log(currentUser);
+  console.log("We're here")
+  const { currentHost, currentUser } = req.session;
+  if (currentHost) {
+    console.log("There was a host");
+    res.redirect("/host");
+    return;
+  } else {
     if (currentUser) {
-      const user = await User.findById(currentUser.id);
-      if (user) {
-        const users = await User.find();
-        res.render("user", { users });
-      } else {
-        res.redirect("/loginUser");
-      }
+      console.log("there was no host, but a user");
+      res.render("user", { userInSession: currentUser });
+      return;
     } else {
-      res.redirect("/user");
+      res.redirect("/loginUser");
+      return;
     }
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
   }
+
+  // if (!req.session.currentUser) {
+  //   res.redirect("/loginUser");
+  // } else {
+  //   const loggedHost = await Host.findById(req.session.currentUser.id);
+  //   console.log("loggedHost", loggedHost);
+  //   if (loggedHost) {
+  //     res.redirect("/host");
+  //   } else {
+  //     try {
+  //       const currentUser = req.session.currentUser;
+  //       console.log(currentUser);
+  //       if (currentUser) {
+  //         const user = await User.findById(currentUser.id);
+  //         if (user) {
+  //           res.render("user", { user });
+  //         } else {
+  //           res.redirect("/loginUser");
+  //         }
+  //       } else {
+  //         res.redirect("/user");
+  //       }
+  //     } catch (error) {
+  //       res.status(500).json({ error: "Internal server error" });
+  //     }
+  //   }
+  // }
 });
 
 router.get("/user/:userId", async (req, res) => {
