@@ -12,8 +12,9 @@ const getCheckoutSession = async (req, res, next) => {
     client_reference_id: req.params.bookingId,
     //     line_items: [
     //         {
-    // name: `${}`
+    // name: `${booking.name}` // Need to add the property so we get the name
+    // description: booking.description /// need to add the property as well
 
-    //         }
+    //         }]
   });
 };
