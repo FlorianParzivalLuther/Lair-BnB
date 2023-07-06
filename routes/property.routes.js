@@ -50,15 +50,38 @@ router.post("/property/:propertyId", deleteProperty);
 const app = express();
 app.use(cookieParser());
 
+// // Get a specific property by ID
+// router.get("/property/:propertyId", (req, res) => {
+//   Property.findById(req.params.propertyId)
+//     .then((property) => {
+//       if (property) {
+//         // Retrieve user information from cookie
+//         const userInfo = req.cookies.userInfo;
+
+//         res.render("properties/property", { property, userInfo });
+//       } else {
+//         return res.status(404).json({ error: "Property not found" });
+//       }
+//     })
+//     .catch((error) => {
+//       res.status(500).json({ error: "Internal server error" });
+//     });
+// });
+
 // Get a specific property by ID
 router.get("/property/:propertyId", (req, res) => {
+  let isLoggedIn = false;
   Property.findById(req.params.propertyId)
+    .populate({ path: "reviews" })
     .then((property) => {
       if (property) {
-        // Retrieve user information from cookie
-        const userInfo = req.cookies.userInfo;
-
-        res.render("properties/property", { property, userInfo });
+        if (req.session.currentUser) {
+          isLoggedIn = true;
+        }
+        res.render("properties/property", {
+          property: property,
+          isLoggedIn: isLoggedIn,
+        });
       } else {
         return res.status(404).json({ error: "Property not found" });
       }
@@ -77,6 +100,9 @@ router.get("/property", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+
+
 
 //! cant understand why there is a json shown when disabled
 mongoose.connect(process.env.DATABASE, {

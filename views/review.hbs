@@ -1,192 +1,221 @@
 {{! property-details.hbs }}
-<form action="/property/{{property._id}}/review" method="POST">
-{{!Container 1}}
-<div class="row">
-  <div class="container mb-4 mt-4">
-    <div class="card">
-      <div class="card-body bg-light">
-        <div>Share a comment and rating for this property: {{property.title}} </div>
-      </div>
-    </div>
-  </div>
-</div>
-{{!Container 1}}
-
-
-
-
-{{!Container 2}}
-<div class="card">
-  <div class="card-body bg-light">
-    <div class="row">
-      {{!USERNAME}}
-      <div class="col-4">
-        <div class="container mb-4">
-          <div class="card">
-            <div class="card-body bg-light">
-              Display Username
-              
-              {{! THIS.USERNAME LOGGEDIN}}
-
-            </div>
+<form action="/{{property._id}}/review" method="POST">
+  {{!Container 1}}
+  <div class="row">
+    <div class="container mb-4 mt-4">
+      <div class="card">
+        <div class="card-body bg-light">
+          <div>Share a comment and rating for this property:
+            {{property.title}}
           </div>
         </div>
       </div>
-      {{! END OF USERNAME}}
-      {{!TEXT COMMENT}}
-      <div class="col-8">
-        <div class="container mb-4">
-          <div class="card">
-            <div class="card-body bg-light">
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">Example textarea</label>
-                <textarea
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                ></textarea>
+    </div>
+  </div>
+  {{!Container 1}}
+
+  {{!Container 2}}
+  <div class="card">
+    <div class="card-body bg-light">
+      <div class="row">
+        {{!USERNAME}}
+        <div class="col-4">
+          <div class="container mb-4">
+            <div class="card">
+              <div class="card-body bg-light">
+                Display Username
+
+                {{! THIS.USERNAME LOGGEDIN}}
+
               </div>
-
             </div>
           </div>
         </div>
-      </div>
-      {{! END OF TEXTCOMMENT}}
-    </div>
-  </div>
-</div>
-{{!Container 2}}
-
-
-
-
-
-{{!Container 3}}
-<div class="row">
-  <div class="container mb-4 mt-4">
-    <div class="card">
-      <div class="card-body bg-light">
-
-        <div class="row">
-
-          {{!Container Keyvalues}}
-          <div class="col-4">
-            <div class="container mb-4 mt-4">
-              <div class="card">
-                <div class="card-body bg-light">
-                  please rate this property !
+        {{! END OF USERNAME}}
+        {{!TEXT COMMENT}}
+        <div class="col-8">
+          <div class="container mb-4">
+            <div class="card">
+              <div class="card-body bg-light">
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Example textarea</label>
+                  <textarea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    name="comment"
+                  ></textarea>
                 </div>
+
               </div>
             </div>
           </div>
-          {{!Container Keyvalues}}
+        </div>
+        {{! END OF TEXTCOMMENT}}
+      </div>
+    </div>
+  </div>
+  {{!Container 2}}
 
-          {{!Container Check10}}
-          <div class="col-8">
-            <div class="container mb-4 mt-4">
-              <div class="card">
-                <div class="card-body bg-light">
+  {{!Container 3}}
+  <div class="row">
+    <div class="container mb-4 mt-4">
+      <div class="card">
+        <div class="card-body bg-light">
 
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label class="form-check-label" for="inlineRadio1">1</label>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label class="form-check-label" for="inlineRadio1">2</label>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label class="form-check-label" for="inlineRadio1">3</label>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label class="form-check-label" for="inlineRadio1">4</label>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label class="form-check-label" for="inlineRadio1">5</label>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label class="form-check-label" for="inlineRadio1">6</label>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label class="form-check-label" for="inlineRadio1">7</label>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label class="form-check-label" for="inlineRadio1">8</label>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label class="form-check-label" for="inlineRadio1">9</label>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label
-                      class="form-check-label"
-                      for="inlineRadio1"
-                    >10</label>
+          <div class="row">
+
+            {{!Container Keyvalues}}
+            <div class="col-4">
+              <div class="container mb-4 mt-4">
+                <div class="card">
+                  <div class="card-body bg-light">
+                    please rate this property !
                   </div>
                 </div>
               </div>
-
             </div>
+            {{!Container Keyvalues}}
+
+            {{!Container Check10}}
+            <div class="col-8">
+              <div class="container mb-4 mt-4">
+                <div class="card">
+                  <div class="card-body bg-light">
+
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="rating"
+                        id="inlineRadio1"
+                        value="1"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio1"
+                      >1</label>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="rating"
+                        id="inlineRadio1"
+                        value="1"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio1"
+                      >2</label>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="rating"
+                        id="inlineRadio1"
+                        value="2"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio1"
+                      >3</label>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="rating"
+                        id="inlineRadio1"
+                        value="3"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio1"
+                      >4</label>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="rating"
+                        id="inlineRadio1"
+                        value="4"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio1"
+                      >5</label>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="rating"
+                        id="inlineRadio1"
+                        value="5"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio1"
+                      >6</label>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="rating"
+                        id="inlineRadio1"
+                        value="6"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio1"
+                      >7</label>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="rating"
+                        id="inlineRadio1"
+                        value="7"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio1"
+                      >8</label>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="rating"
+                        id="inlineRadio1"
+                        value="8"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio1"
+                      >9</label>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="rating"
+                        id="inlineRadio1"
+                        value="9"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="inlineRadio1"
+                      >10</label>
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="rating"
+                        id="inlineRadio1"
+                        value="10"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            {{!Container Check10}}
+
           </div>
-          {{!Container Check10}}
-
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
-</div>
-{{!Container 3}}
+  {{!Container 3}}
 
-
-<button type="submit" value="submit">Submit</button>
+  <button type="submit" value="submit">Submit</button>
 </form>
