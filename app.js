@@ -31,7 +31,6 @@ const app = express();
 //   })
 // );
 
-
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -53,6 +52,9 @@ app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 // 👇 Start handling routes here
 const authRoutes = require("./routes/auth.routes");
 app.use("/", authRoutes);
+
+const checkoutRoutes = require("./routes/checkout.routes");
+app.use("/", checkoutRoutes);
 
 const homeRoutes = require("./routes/home.routes");
 app.use("/", homeRoutes);

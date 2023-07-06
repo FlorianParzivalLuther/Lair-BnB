@@ -29,7 +29,7 @@
     "path": "^0.12.7",
     "sass": "^1.63.6",
     "serve-favicon": "^2.5.0",
-    "stripe": "^12.11.0"
+    "stripe": "7.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
