@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Review = require("../models/Review.model");
+
+
 const User = require("../models/User.model");
 const Property = require("../models/Property.model");
 const cookieParser = require("cookie-parser");
@@ -10,6 +12,7 @@ const {
   deleteProperty,
   updateProperty,
 } = require("../controllers/property");
+
 
 router.get("/review/:reviewId", async (req, res) => {
   // Get a specific review by ID
