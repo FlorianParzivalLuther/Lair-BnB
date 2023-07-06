@@ -69,11 +69,6 @@ app.use("/", userRoutes);
 const hostRoutes = require("./routes/host.routes");
 app.use("/", hostRoutes);
 
-const userLogin = require("./routes/auth.routes");
-app.use("/", userLogin);
-const hostLogin = require("./routes/auth.routes");
-app.use("/", hostLogin);
-
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

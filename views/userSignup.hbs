@@ -1,29 +1,83 @@
 {{! register.hbs }}
+<div class="container mb-4 mt-4">
+  <div class="card">
+    <div class="card-body bg-light">
+      SIGN UP AS A GUEST
+</div></div></div>
 
-<div id="form">
-  <h2>Signup as a User</h2>
-  <form action="/userSignup" method="POST">
+<div class="container mb-4">
+  <div class="card">
+    <div class="card-body bg-light">
+
+
+
+<form action="/userSignup" method="POST">
+
+  <div class="form-group">
     <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" name="firstName" required /><br /><br />
-
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" name="lastName" required /><br /><br />
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required /><br /><br />
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required /><br /><br />
-
-    <label for="phoneNumber">Phone Number:</label>
-    <input type="text" id="phoneNumber" name="phoneNumber" required /><br /><br
+    <input
+      type="text"
+      class="form-control"
+      id="firstName"
+      name="firstName"
+      required
     />
+  </div>
 
-    <input type="submit" value="Register" />
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="lastName"
+      name="lastName"
+      required
+    />
+  </div>
 
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-    
-  </form>
-</div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      placeholder="example@examplemail.com"
+      name="email"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="phoneNumber">Phone Number:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="phoneNumber"
+      name="phoneNumber"
+      required
+    />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enroll</button>
+
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
+</form>
+<div class="container mb-4 mt-4">
+  <div class="card">
+    <div class="card-body bg-light">
+*Enroll thyself unto the esteemed halls of LAIR, and in thy joining, thou shalt ascend to the coveted echelons of an illustrious fellowship. Henceforth, a member thou shalt be, admitted to the inner sanctum of this select fraternity. Prepare thy spirit, for within these cherished precincts, an uncharted realm of boundless enchantment awaits thee.
+</div></div></div>
+</div></div></div>

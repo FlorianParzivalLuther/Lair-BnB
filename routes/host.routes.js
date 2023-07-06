@@ -1,26 +1,21 @@
 const express = require("express");
 const router = express.Router();
-
+const User = require("../models/User.model");
 const Host = require("../models/Host.model");
-const { loginHost } = require("../controllers/auth");
 
-router.get("/", async (req, res) => {
-  try {
-    const currentUser = req.session.currentUser;
-    console.log(currentUser);
-    if (currentUser) {
-      const host = await Host.findById(currentUser.id);
-      if (host) {
-        const hosts = await Host.find();
-        res.render("host", { hosts });
-      } else {
-        res.redirect("/loginHost");
-      }
+router.get("/host", async (req, res) => {
+  const { currentHost, currentUser } = req.session;
+  if (currentUser) {
+    res.redirect("/user");
+    return;
+  } else {
+    if (currentHost) {
+      res.render("host", { hostInSession: currentHost });
+      return;
     } else {
       res.redirect("/loginHost");
+      return;
     }
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
   }
 });
 
@@ -36,7 +31,5 @@ router.get("/host/:hostId", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
-// Rendering example
 
 module.exports = router;

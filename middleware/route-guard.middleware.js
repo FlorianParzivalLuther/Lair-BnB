@@ -1,18 +1,37 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
 
-const isLoggedIn = (req, res, next) => {
+const isUserLoggedIn = (req, res, next) => {
   if (!req.session.currentUser) {
     return res.redirect("/loginUser");
   }
   next();
 };
 
-const isLoggedOut = (req, res, next) => {
+const isUserLoggedOut = (req, res, next) => {
   if (req.session.currentUser) {
     return res.redirect("/user");
   }
   next();
 };
 
-module.exports = { isLoggedIn, isLoggedOut };
+const isHostLoggedIn = (req, res, next) => {
+  if (!req.session.currentHost) {
+    return res.redirect("/loginHost");
+  }
+  next();
+};
+
+const isHostLoggedOut = (req, res, next) => {
+  if (req.session.currentHost) {
+    return res.redirect("/host");
+  }
+  next();
+};
+
+module.exports = {
+  isUserLoggedIn,
+  isUserLoggedOut,
+  isHostLoggedIn,
+  isHostLoggedOut,
+};

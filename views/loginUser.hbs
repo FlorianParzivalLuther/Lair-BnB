@@ -1,4 +1,4 @@
-<h1>User Login</h1>
+{{!-- <h1>User Login</h1>
 <form action="/loginUser" method="POST">
   <label for="email">Email:</label>
   <input type="email" id="email" name="email" required /><br /><br />
@@ -11,4 +11,49 @@
   {{#if errorMessage}}
     <p class="error">{{errorMessage}}</p>
   {{/if}}
+</form> --}}
+
+<div class="container mb-4 mt-4">
+  <div class="card">
+    <div class="card-body bg-light">
+      LOGIN AS A GUEST
+</div></div></div>
+
+
+<div class="container mb-4">
+  <div class="card">
+    <div class="card-body bg-light">
+
+
+<form action="/loginUser" method="POST">
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      placeholder="example@examplemail.com"
+      name="email"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" id="password"  name="password" required />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Login</button>
+
+  {{#if errorMessage}}
+    <p class="error">{{errorMessage}}</p>
+  {{/if}}
 </form>
+<div class="container mb-4 mt-4">
+  <div class="card">
+    <div class="card-body bg-light">
+
+*Login to the realm of LAIR and embark upon an extraordinary sojourn amidst our resplendent abodes, where the pinnacle of hospitality awaits. Prepare thyself for an unrivaled sojourn, forsooth, as thou partakest in an enchanting odyssey through our ethereal domains.
+</div></div></div>
+</div></div></div>

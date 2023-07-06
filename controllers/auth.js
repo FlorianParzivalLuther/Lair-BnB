@@ -92,7 +92,7 @@ const registerHost = async (req, res, next) => {
 
 const loginUser = async (req, res, next) => {
   try {
-    // console.log("SESSION =====>", req.session);
+    console.log("SESSION =====>", req.session);
     const { email, password } = req.body;
     const user = await User.findOne({ email: email });
 
@@ -135,6 +135,7 @@ const loginHost = async (req, res, next) => {
     // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     delete host.password;
 
+    // rename it to req.session.currentUser
     req.session.currentUser = host;
     console.log(host);
     res.redirect("/host");

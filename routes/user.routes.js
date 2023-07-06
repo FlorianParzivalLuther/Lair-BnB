@@ -1,27 +1,27 @@
 const express = require("express");
 const router = express.Router();
-
+const Host = require("../models/Host.model");
 const User = require("../models/User.model");
 
 router.get("/user", async (req, res) => {
-  try {
-    const currentUser = req.session.currentUser;
-    console.log(currentUser);
+  const { currentHost, currentUser } = req.session;
+  if (currentHost) {
+    res.redirect("/host");
+    return;
+  } else {
     if (currentUser) {
-      const user = await User.findById(currentUser.id);
-      if (user) {
-        const users = await User.find();
-        res.render("user", { users });
-      } else {
-        res.redirect("/loginUser");
-      }
+      console.log("there was no host, but a user");
+      res.render("user", { userInSession: currentUser });
+      return;
     } else {
-      res.redirect("/user");
+      res.redirect("/loginUser");
+      return;
     }
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
   }
 });
+
+
+
 
 router.get("/user/:userId", async (req, res) => {
   // Get a specific user by ID

@@ -1,21 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const Booking = require("../models/Booking.model");
+const {
+  createBooking,
+  updateBooking,
+  deleteBooking,
+  findBooking,
+} = require("../controllers/booking");
 
+// Create Booking
+router.post("/booking/", createBooking);
 
-router.get("/booking/:bookingId", async (req, res) => {
-  // Get a specific booking by ID
-  try {
-    const booking = await Booking.findById(req.params.bookingId);
-    if (!booking) {
-      return res.status(404).json({ error: "Booking not found" });
-    }
-    res.json(booking);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+router.get("/booking/:bookingId", findBooking);
 
 // Rendering example
 router.get("/booking", async (req, res) => {

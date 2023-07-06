@@ -1,11 +1,95 @@
+
+
+
 {{#if userInSession}}
-  <h2>Welcome, {{userInSession.firstName}}!</h2>
-  <p>This is your profile page my friend!</p>
-  <button>
-    <a href="/user">Reload the page</a>
-  </button>
+  <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <div class="container mb-4 mt-4">
+          <div class="card">
+            <div class="card-body bg-light">
+              WELCOME HOME TRAVELLER
+            </div></div></div>
+
+        <div class="row">
+
+          <div class="col-8">
+            <div class="container mb-4 mt-4">
+              <div class="card">
+                <div class="card-body bg-light">
+                  <div class="row">First Name: {{userInSession.firstName}}</div>
+                  <div class="row">Email registered:
+                    {{userInSession.email}}</div>
+                  <div class="row">PhoneNumber registered:
+                    {{userInSession.phoneNumber}}</div>
+                  <div class="row">Member since:
+                    {{userInSession.dateJoined}}</div>
+
+                </div></div></div>
+                <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <a href="/user">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-lg btn-block"
+                >add/change data</button>
+              </a>
+        </div></div></div>
+          </div>
+
+      <div class="col-4">
+  <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <img src="https://res.cloudinary.com/dxggkj0l2/image/upload/v1688562365/samples/properties/download-2_w4wf1v.jpg" alt="Special Image" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+    </div>
+  </div>
+  <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <a href="/user">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-lg btn-block"
+                >change picture</button>
+              </a>
+        </div></div></div>
+</div>
+
+        <div class="container mb-4 mt-4">
+          <div class="card">
+            <div class="card-body bg-light">
+
+              {{!-- <a href="/user">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-lg btn-block "
+                >Reload the page</button>
+              </a> --}}
+
+              <form id="logout-form" action="/logout" method="POST">
+  <button type="submit" class="btn btn-danger btn-lg btn-block mt-4">Logout</button>
+</form>
+
+            </div></div></div>
+            
+                
+              
+
+            
+
+      </div></div></div>
 {{else}}
-
-  <br /><p>Still no logged in user, sorry!</p>
-
+  <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        <div class="container mb-4 mt-4">
+          <div class="card">
+            <div class="card-body bg-light">
+              NOT LOGGED IN!
+            </div></div></div>
+      </div></div></div>
 {{/if}}
+
