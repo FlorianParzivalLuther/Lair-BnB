@@ -13,7 +13,7 @@ const HostSchema = new mongoose.Schema({
   },
   password: { type: String, required: true },
   phoneNumber: { type: String, required: true },
-  isAdmin: { type: Boolean, default: false },
+  isAdmin: { type: Boolean, default: true },
   dateJoined: { type: Date, default: Date.now },
   createdProperties: [
     { type: mongoose.Schema.Types.ObjectId, ref: "Property" },
