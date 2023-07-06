@@ -72,7 +72,28 @@
                   class="btn btn-secondary btn-lg btn-block"
                 >add/change data</button>
               </a>
+
         </div></div></div>
+        <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+        
+        <h2>Your properties:</h2>
+{{#each properties}}
+  <div class="property">
+    <h2>{{this.title}}</h2>
+    <p>{{this.location}}</p>
+    <p>{{this.description}}</p>
+    <h2>{{this.price}}</h2>
+    <p>{{this.amenities}}</p>
+    <p>{{this.images}}</p>
+    <h2>{{this.maxGuests}}</h2>
+    <p>{{this.rating}}</p>
+    <p>{{this.reviews}}</p>
+  </div>
+{{/each}}
+        </div></div></div>
+
           </div>
 
       <div class="col-4">
@@ -99,12 +120,7 @@
           <div class="card">
             <div class="card-body bg-light">
 
-              {{!-- <a href="/host">
-                <button
-                  type="button"
-                  class="btn btn-secondary btn-lg btn-block "
-                >Reload the page</button>
-              </a> --}}
+
 
               <form id="logout-form" action="/logout" method="POST">
   <button type="submit" class="btn btn-secondary btn-lg btn-block mt-4">Logout</button>
