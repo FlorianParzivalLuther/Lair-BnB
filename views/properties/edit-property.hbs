@@ -1,41 +1,183 @@
-<h1>Edit Property</h1>
+<div class="container mb-4 mt-4">
+  <div class="card">
+    <div class="card-body bg-light">
+      <h4 class="card-title">EDIT PROPERTY</h4>
+    </div>
+  </div>
+</div>
 
-<form action="/property/{{property._id}}/edit" method="POST">
-  <label for="title">Title:</label>
-  <input type="text" id="title" name="title" value="{{property.title}}" /><br />
+<div class="container mb-4">
+  <div class="card">
+    <div class="card-body bg-light">
+      <form action="/property/{{property._id}}/edit" method="POST">
 
-  <label for="description">Description:</label>
-  <textarea
-    id="description"
-    name="description"
-  >{{property.description}}</textarea><br />
+        <div class="form-group">
+          <label for="title">Title :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            value="{{property.title}}"
+            required
+          />
+        </div>
 
-  <label for="location">Location:</label>
-  <input
-    type="text"
-    id="location"
-    name="location"
-    value="{{property.location}}"
-  /><br />
+        <div class="form-group">
+          <label for="description">Description :</label>
+          <textarea
+            class="form-control"
+            id="description"
+            name="description"
+            required
+          >{{property.description}}</textarea>
+        </div>
 
-  <label for="price">Price:</label>
-  <input type="number" id="price" name="price" value="{{property.price}}" /><br
-  />
+        <div class="form-group">
+          <label for="location">Location :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="location"
+            name="location"
+            value="{{property.location}}"
+            required
+          />
+        </div>
 
-  <label for="amenities">Amenities:</label>
-  <textarea id="amenities" name="amenities">{{property.amenities}}</textarea><br
-  />
+        <div class="form-group">
+          <label for="price">Price :</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price"
+            name="price"
+            value="{{property.price}}"
+            required
+          />
+        </div>
 
+        <div class="form-group">
+          <label for="amenities">Amenities :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="amenities"
+            name="amenities"
+            value="{{property.amenities.0}}"
+            required
+          />
+          <input
+            type="text"
+            class="form-control"
+            id="amenities"
+            name="amenities"
+            value="{{property.amenities.1}}"
+            required
+          />
+          <input
+            type="text"
+            class="form-control"
+            id="amenities"
+            name="amenities"
+            value="{{property.amenities.2}}"
+            required
+          />
+        </div>
 
-  <small>Leave blank if you don't want to update the images.</small><br />
+        <div class="container mb-4">
+          <div class="card">
+            <div class="card-body bg-light">
+              <p>Leave blank if you don't want to update the pictures</p>
+            </div>
+          </div>
+        </div>
 
-  <label for="maxGuests">Max Guests:</label>
-  <input
-    type="number"
-    id="maxGuests"
-    name="maxGuests"
-    value="{{property.maxGuests}}"
-  /><br />
+        <div class="form-group">
+          <label for="images">Images :</label>
+          <input
+            type="text"
+            class="form-control"
+            id="images"
+            name="images"
+            value="{{property.images.0}}"
+            required
+          />
+          <input
+            type="text"
+            class="form-control"
+            id="images"
+            name="images"
+            value="{{property.images.1}}"
+            required
+          />
+          <input
+            type="text"
+            class="form-control"
+            id="images"
+            name="images"
+            value="{{property.images.2}}"
+            required
+          />
+          <input
+            type="text"
+            class="form-control"
+            id="images"
+            name="images"
+            value="{{property.images.3}}"
+            required
+          />
+          <input
+            type="text"
+            class="form-control"
+            id="images"
+            name="images"
+            value="{{property.images.4}}"
+            required```html
+          />
+          <input
+            type="text"
+            class="form-control"
+            id="images"
+            name="images"
+            value="{{property.images.5}}"
+            required
+          />
+        </div>
 
-  <input type="submit" value="Update Property" />
-</form>
+        <div class="form-group">
+          <label for="maxGuests">Max Guests :</label>
+          <input
+            type="number"
+            class="form-control"
+            id="maxGuests"
+            name="maxGuests"
+            value="{{property.maxGuests}}"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enroll</button>
+      </form>
+
+      <div class="container mb-4 mt-4">
+        <div class="card">
+          <div class="card-body bg-light">
+            <p>
+              *Take heed and affix thy name to the scrolls of LAIR, as a host to
+              receive guests of unparalleled eminence. In this fellowship of
+              exclusivity, thou shalt assume the mantle of a guardian, opening
+              the doors of thy abode to those adorned with distinction. Embrace
+              this noble role, wherein the threads of fate intertwine, as
+              wanderers of rare fortune seek respite within the realms of
+              enchantment that we proffer. Thus, inscribe thy legacy as a
+              custodian of hospitality, and partake in the timeless tapestry
+              where extraordinary encounters and enduring remembrances find
+              their genesis.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
