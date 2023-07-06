@@ -1,11 +1,14 @@
 <h1>Booking Details</h1>
 <div class="container">
   <div class="booking-details">
-    <h3>Property ID: {{booking.property}}</h3>
+    <h3>Your Lair: {{booking.property.title}}</h3>
+    <h3>Description: {{booking.property.description}}</h3>
+    {{!-- <h3>Your Lair: {{booking.property.name}}</h3> --}}
     <h3>Start Date: {{booking.startDate}}</h3>
     <h3>End Date: {{booking.endDate}}</h3>
     <h3>Number of Guests: {{booking.guests}}</h3>
     <h3>Total Price: ${{booking.totalPrice}}</h3>
+    <h3>{{booking.property.title}}</h3>
   </div>
   <div class="checkout">
     <h2>Checkout</h2>
