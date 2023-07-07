@@ -2,20 +2,37 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User.model");
 const Host = require("../models/Host.model");
+const Property = require("../models/Property.model");
 
 router.get("/host", async (req, res) => {
   const { currentHost, currentUser } = req.session;
+
   if (currentUser) {
     res.redirect("/user");
     return;
+  } else if (currentHost) {
+    const hostId = currentHost._id;
+
+    Property.find({ owner: hostId })
+      .populate("owner")
+      .then((properties) => {
+        console.log(hostId);
+        console.log("properties", properties);
+        res.render("host", {
+          hostInSession: currentHost,
+          properties: properties,
+        });
+        console.log(properties);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.redirect("/error");
+      });
+
+    return;
   } else {
-    if (currentHost) {
-      res.render("host", { hostInSession: currentHost });
-      return;
-    } else {
-      res.redirect("/loginHost");
-      return;
-    }
+    res.redirect("/loginHost");
+    return;
   }
 });
 

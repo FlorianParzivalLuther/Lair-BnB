@@ -1,51 +1,41 @@
 
 
-<div class="container">
-  <div class="row mb-4 mt-8">
-    {{#each properties}}
-
-      <div class="col-md-4">
-        <div class="card mb-4 mt-4">
-          <a href="property/{{this._id}}" class="card-link">
-            <img
-              src="{{this.images.[1]}}"
-              class="card-img-top rounded"
-              alt="Property Image"
-            />
-            <div class="card-body">
-              <h5
-                class="card-title text-truncate"
-                style="max-height: 3.6em; overflow: hidden; font-size: 1.2rem;"
-              >{{this.title}}</h5>
-              <p
-                class="card-text text-truncate"
-                style="max-height: 5.2em; overflow: hidden; font-size: 0.9rem;"
-              >{{this.description}}</p>
-              <p class="card-text"><span
-                  style="font-weight: bold;"
-                >{{this.price}} € per night including VAT.</span></p>
-            </div>
-          </a>
-        </div>
-      </div>
-    {{/each}}
-  </div>
-</div>
-
-
-
-
-
 
 
 {{#if hostInSession}}
   <div class="container mb-4 mt-4">
+
+
+
+
+
+
+{{#if userInSession}}
+ <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Hello Master!</strong>
+        You are logged in as a <strong>HOST</strong> ?
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+{{/if}}
+
+
+
+
+
+
     <div class="card">
       <div class="card-body bg-light">
         <div class="container mb-4 mt-4">
           <div class="card">
             <div class="card-body bg-light">
-              WELCOME HOME MASTER/MISTRESS
+              WELCOME HOME LAIR B'N'B HOST
             </div></div></div>
 
         <div class="row">
@@ -72,7 +62,56 @@
                   class="btn btn-secondary btn-lg btn-block"
                 >add/change data</button>
               </a>
+
         </div></div></div>
+        <div class="container mb-4 mt-4">
+    <div class="card">
+      <div class="card-body bg-light">
+
+      <div class="container mb-4">
+  <div class="card">
+    <div class="card-body bg-light">
+        <div>Your properties:</div>
+        </div></div></div>
+<style>
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card-link:hover {
+    color: rgb(169, 169, 169);
+  }
+</style>
+{{#each properties}}
+
+      <div class="col-md-4">
+        <div class="card mb-4 mt-4">
+          <a href="property/{{this._id}}" class="card-link">
+            <img
+              src="{{this.images.[1]}}"
+              class="card-img-top rounded"
+              alt="Property Image"
+            />
+            <div class="card-body">
+              <h5
+                class="card-title text-truncate"
+                style="max-height: 3.6em; overflow: hidden; font-size: 1.2rem;"
+              >{{this.title}}</h5>
+              <p
+                class="card-text text-truncate"
+                style="max-height: 5.2em; overflow: hidden; font-size: 0.9rem;"
+              >{{this.description}}</p>
+              <p class="card-text"><span
+                  style="font-weight: bold;"
+                >{{this.price}} € per night including VAT.</span></p>
+            </div>
+          </a>
+        </div>
+      </div>
+    {{/each}}
+        </div></div></div>
+
           </div>
 
       <div class="col-4">
@@ -99,12 +138,7 @@
           <div class="card">
             <div class="card-body bg-light">
 
-              {{!-- <a href="/host">
-                <button
-                  type="button"
-                  class="btn btn-secondary btn-lg btn-block "
-                >Reload the page</button>
-              </a> --}}
+
 
               <form id="logout-form" action="/logout" method="POST">
   <button type="submit" class="btn btn-secondary btn-lg btn-block mt-4">Logout</button>
@@ -142,4 +176,5 @@
             </div></div></div>
       </div></div></div>
 {{/if}}
+
 

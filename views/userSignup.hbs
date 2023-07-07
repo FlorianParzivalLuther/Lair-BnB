@@ -3,81 +3,110 @@
   <div class="card">
     <div class="card-body bg-light">
       SIGN UP AS A GUEST
-</div></div></div>
+    </div></div></div>
 
 <div class="container mb-4">
   <div class="card">
     <div class="card-body bg-light">
 
+      <div class="alert alert-success" role="alert">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="alert-heading">
+          Dear, esteemed future Traveller!</h4>
 
+        <p>As you embark upon this momentous journey, soon to become an integral
+          part of our cherished fellowship, behold the tidings of our humble
+          cookies!</p><br />
+        <p><strong>Information about the cookies:</strong></p>
+        When thou dost undertake the noble act of enrolling as a User, thou
+        shalt willingly embrace the gift of cookies bestowed upon thy browser.
+        Let it be known that by accepting this noble pact, thou shall find
+        thyself immersed in a realm where digital confections enhance thy online
+        sojourns.
+        <hr />
+        <p class="mb-0">May thy path be filled with enlightenment and discovery!</p>
 
-<form action="/userSignup" method="POST">
+      </div>
 
-  <div class="form-group">
-    <label for="firstName">First Name:</label>
-    <input
-      type="text"
-      class="form-control"
-      id="firstName"
-      name="firstName"
-      required
-    />
-  </div>
+      <form action="/userSignup" method="POST">
 
-  <div class="form-group">
-    <label for="lastName">Last Name:</label>
-    <input
-      type="text"
-      class="form-control"
-      id="lastName"
-      name="lastName"
-      required
-    />
-  </div>
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            name="firstName"
+            required
+          />
+        </div>
 
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      placeholder="example@examplemail.com"
-      name="email"
-      required
-    />
-  </div>
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            name="lastName"
+            required
+          />
+        </div>
 
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input
-      type="password"
-      class="form-control"
-      id="password"
-      name="password"
-      required
-    />
-  </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="example@examplemail.com"
+            name="email"
+            required
+          />
+        </div>
 
-  <div class="form-group">
-    <label for="phoneNumber">Phone Number:</label>
-    <input
-      type="text"
-      class="form-control"
-      id="phoneNumber"
-      name="phoneNumber"
-      required
-    />
-  </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            required
+          />
+        </div>
 
-  <button type="submit" class="btn btn-primary">Enroll</button>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="phoneNumber"
+            name="phoneNumber"
+            required
+          />
+        </div>
 
-  {{#if errorMessage}}
-    <p class="error">{{errorMessage}}</p>
-  {{/if}}
-</form>
-<div class="container mb-4 mt-4">
-  <div class="card">
-    <div class="card-body bg-light">
-*Enroll thyself unto the esteemed halls of LAIR, and in thy joining, thou shalt ascend to the coveted echelons of an illustrious fellowship. Henceforth, a member thou shalt be, admitted to the inner sanctum of this select fraternity. Prepare thy spirit, for within these cherished precincts, an uncharted realm of boundless enchantment awaits thee.
-</div></div></div>
-</div></div></div>
+        <button type="submit" class="btn btn-primary">Enroll</button>
+
+        {{#if errorMessage}}
+          <p class="error">{{errorMessage}}</p>
+        {{/if}}
+      </form>
+      <div class="container mb-4 mt-4">
+        <div class="card">
+          <div class="card-body bg-light">
+            *Enroll thyself unto the esteemed halls of LAIR, and in thy joining,
+            thou shalt ascend to the coveted echelons of an illustrious
+            fellowship. Henceforth, a member thou shalt be, admitted to the
+            inner sanctum of this select fraternity. Prepare thy spirit, for
+            within these cherished precincts, an uncharted realm of boundless
+            enchantment awaits thee.
+          </div></div></div>
+    </div></div></div>

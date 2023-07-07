@@ -101,11 +101,11 @@ router.get("/property", async (req, res) => {
   }
 });
 
-//! cant understand why there is a json shown when disabled
-mongoose.connect(process.env.DATABASE, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// //! cant understand why there is a json shown when disabled
+// mongoose.connect(process.env.DATABASE, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 // const createTestProperties = () => {
 //   Property.deleteMany() // Clear existing properties
@@ -259,6 +259,8 @@ mongoose.connect(process.env.DATABASE, {
 
 // createTestProperties();
 // //!
+
+
 
 // router.get("property/:propertyId/review",(req,res)=>{
 // Property.findById(req.params.propertyId).then((property) => {
