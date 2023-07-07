@@ -223,7 +223,7 @@
   <div class="card">
     <div class="card-body bg-light">
       <a href="/property/{{property._id}}/review">
-      <button type="button" class="btn btn-secondary btn-lg btn-block">rate this property</button>
+      <button type="button" class="btn btn-primary btn-lg btn-block">rate this property</button>
       </a>
 </div>
 </div>
@@ -300,7 +300,8 @@
               <input type="hidden" name="propertyId" value="{{property._id}}">
         
               {{!-- {{if isLoggedIn}} --}}
-                <button type="submit" value="Add Bookings">Add Bookings</button>
+              <button class="btn btn-primary" type="submit" value="Add Booking">Add Booking</button>
+                {{!-- <button type="submit" value="Add Bookings">Add Bookings</button> --}}
               {{!-- {{/if}} --}}
             </form>
             </div>
