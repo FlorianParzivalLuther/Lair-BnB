@@ -12,27 +12,29 @@
 
 ```
 
-Experience LAIR: A Lord of the Rings-inspired Airbnb!
+# Experience LAIR: A Lord of the Rings-inspired Airbnb!
 
 Discover LAIR, where the magic of Middle-earth meets modern travel. Immerse yourself in enchanting accommodations inspired by Tolkien's world. From Hobbit holes to Elven treehouses and Dwarven castles, find your perfect retreat. Unleash your wanderlust and explore breathtaking landscapes. Our exceptional hosts ensure an extraordinary journey. Join the fellowship at LAIR and let the adventure begin!
 
-https://lairbnb.cyclic.app
+## User Path:
 
-## Dependencies
-
-- dotenv
-- express
-- mongoose
-- multer
-- helmet
-- path
-- hbs
-- bcrypt
-- express-session
-- connect-mongo
-- loader
-- jsonwebtoken
-- cookie-parser
+1. **Homepage:** Upon entering the LAIR website, the homepage loads, showcasing a selection of exquisite properties available for rent.
+2. **Property Details:** Users can freely explore the loaded properties and access their detailed information, even without logging in or signing up.
+3. **Sign Up:** If a user decides to sign up for an account, they can do so by clicking on the "Sign Up" button. This action leads them to a form that requests their information.
+4. **Form Submission:** After filling in the required details, the user submits the form, creating their LAIR account.
+5. **Login:** Once signed up, the user can access their account by clicking on the "Login" button. This redirects them to the login page.
+6. **User Profile:** Upon successful login, the user is directed to their profile page. Here, they can view all the information they provided during sign-up.
+7. **Property Booking:** From the user profile or homepage, the user can browse through available properties and select the one they wish to book.
+8. **Property Page:** Upon selecting a property, the user is taken to the property's page. Here, they can find comprehensive details about the property, including amenities, location, availability, and pricing.
+9. **Booking Initiation:** The user decides to proceed with booking and clicks on the "Book Now" button.
+10. **Login/Sign Up Prompt:** If the user is not logged in, they will be prompted to log in or sign up to continue the booking process.
+11. **Logged In:** Once logged in, the user is redirected back to the property page, ready to proceed with booking.
+12. **Rating and Commenting:** On the property page, the user can rate and comment on the property based on their experience.
+13. **Select Dates:** The user chooses the desired dates for their stay, which then calculates the corresponding price.
+14. **Booking Confirmation:** After selecting the dates, the user can finalize the booking by clicking on the "Book" button.
+15. **Checkout:** The user is directed to the checkout page, where all the booking details, including selected dates and the total price, are displayed.
+16. **Review and Checkout:** The user reviews the details on the checkout page and confirms the booking by clicking on the "Checkout" button.
+17. **Booking Completed:** The user's booking is successfully completed, marking the end of the journey.
 
 ## Technologies Used
 
@@ -74,11 +76,33 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTH
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
+## Dependencies
+
+- dotenv
+- express
+- mongoose
+- multer
+- helmet
+- path
+- hbs
+- bcrypt
+- express-session
+- connect-mongo
+- loader
+- jsonwebtoken
+- cookie-parser
+
 ## Team Members
 
 - Roman
 - Filipa
 - Florian
+
+## Future Enhancements
+
+While this user path covers the primary functionalities of the LAIR website, we are continuously working to enhance the user experience and provide additional features and services. Stay tuned for updates and exciting new offerings on the LAIR platform!
+
+Thank you for choosing LAIR. We hope you have a delightful experience exploring our luxurious properties.
 
 ```
 
