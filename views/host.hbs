@@ -1,41 +1,5 @@
 
 
-<div class="container">
-  <div class="row mb-4 mt-8">
-    {{#each properties}}
-
-      <div class="col-md-4">
-        <div class="card mb-4 mt-4">
-          <a href="property/{{this._id}}" class="card-link">
-            <img
-              src="{{this.images.[1]}}"
-              class="card-img-top rounded"
-              alt="Property Image"
-            />
-            <div class="card-body">
-              <h5
-                class="card-title text-truncate"
-                style="max-height: 3.6em; overflow: hidden; font-size: 1.2rem;"
-              >{{this.title}}</h5>
-              <p
-                class="card-text text-truncate"
-                style="max-height: 5.2em; overflow: hidden; font-size: 0.9rem;"
-              >{{this.description}}</p>
-              <p class="card-text"><span
-                  style="font-weight: bold;"
-                >{{this.price}} € per night including VAT.</span></p>
-            </div>
-          </a>
-        </div>
-      </div>
-    {{/each}}
-  </div>
-</div>
-
-
-
-
-
 
 
 {{#if hostInSession}}
@@ -77,21 +41,40 @@
         <div class="container mb-4 mt-4">
     <div class="card">
       <div class="card-body bg-light">
-        
+
+      <div class="container mb-4">
+  <div class="card">
+    <div class="card-body bg-light">
         <h2>Your properties:</h2>
+        </div></div></div>
+
 {{#each properties}}
-  <div class="property">
-    <h2>{{this.title}}</h2>
-    <p>{{this.location}}</p>
-    <p>{{this.description}}</p>
-    <h2>{{this.price}}</h2>
-    <p>{{this.amenities}}</p>
-    <p>{{this.images}}</p>
-    <h2>{{this.maxGuests}}</h2>
-    <p>{{this.rating}}</p>
-    <p>{{this.reviews}}</p>
-  </div>
-{{/each}}
+
+      <div class="col-md-4">
+        <div class="card mb-4 mt-4">
+          <a href="property/{{this._id}}" class="card-link">
+            <img
+              src="{{this.images.[1]}}"
+              class="card-img-top rounded"
+              alt="Property Image"
+            />
+            <div class="card-body">
+              <h5
+                class="card-title text-truncate"
+                style="max-height: 3.6em; overflow: hidden; font-size: 1.2rem;"
+              >{{this.title}}</h5>
+              <p
+                class="card-text text-truncate"
+                style="max-height: 5.2em; overflow: hidden; font-size: 0.9rem;"
+              >{{this.description}}</p>
+              <p class="card-text"><span
+                  style="font-weight: bold;"
+                >{{this.price}} € per night including VAT.</span></p>
+            </div>
+          </a>
+        </div>
+      </div>
+    {{/each}}
         </div></div></div>
 
           </div>
@@ -158,4 +141,5 @@
             </div></div></div>
       </div></div></div>
 {{/if}}
+
 
