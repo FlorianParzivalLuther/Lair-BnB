@@ -299,10 +299,12 @@
               <input type="hidden" name="totalPrice" id="totalPriceInput">
               <input type="hidden" name="propertyId" value="{{property._id}}">
         
-              {{!-- {{if isLoggedIn}} --}}
+
+              {{!-- {{#unless hostInSession}} --}}
               <button class="btn btn-primary" type="submit" value="Add Booking">Add Booking</button>
-                {{!-- <button type="submit" value="Add Bookings">Add Bookings</button> --}}
-              {{!-- {{/if}} --}}
+                
+              {{!-- {{/unless}} --}}
+
             </form>
             </div>
           </div>
