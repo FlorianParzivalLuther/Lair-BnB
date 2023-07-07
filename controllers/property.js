@@ -1,5 +1,6 @@
 const express = require("express");
 const Property = require("../models/Property.model");
+const Host = require("../models/Host.model");
 
 // CREATE PROPERTY FUNCTION
 const createProperty = async (req, res) => {
@@ -10,7 +11,6 @@ const createProperty = async (req, res) => {
     price,
     amenities,
     images,
-    owner,
     rating,
     maxGuests,
   } = req.body;
@@ -28,6 +28,7 @@ const createProperty = async (req, res) => {
   //}
 
   console.log(req.body);
+
   if (
     !title ||
     !description ||
@@ -42,6 +43,7 @@ const createProperty = async (req, res) => {
   }
 
   try {
+    const owner = req.session.currentHost._id;
     const newProperty = new Property({
       title,
       description,
@@ -53,8 +55,11 @@ const createProperty = async (req, res) => {
       rating,
       maxGuests,
     });
-
     const savedProperty = await newProperty.save();
+    const updateHost = await Host.findByIdAndUpdate(owner, {
+      $push: { createdProperties: savedProperty._id },
+    });
+    console.log(updateHost);
     //console.log(savedProperty);
     res.status(201).redirect(`/property/${savedProperty._id}`);
   } catch (err) {
